@@ -1,0 +1,1015 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+
+const heroTitle = 'We Help Investors & Entrepreneurs Find Funding When Banks Say No';
+const heroDescription = "Capital Access was built by people who've been in your shoes—turned away by traditional lenders, racing against deadlines, and needing real answers, not sales pitches.";
+
+const stats = [
+  { value: '15+', label: 'Years of Combined Experience' },
+  { value: '500+', label: 'Educational Resources Published' },
+  { value: '10,000+', label: 'Investors Helped' },
+  { value: '50+', label: 'Lender Relationships' },
+];
+
+const ourStory = {
+  title: 'Our Story',
+  paragraphs: [
+    'Capital Access started in a coffee shop in 2018. Michael Torres, a former hard money lender with 20 years in real estate investment, was meeting with yet another frustrated investor who had been bounced between banks for three months—only to be told "no" two weeks before their contract deadline.',
+    'That investor had a solid deal. Good numbers. Clear exit strategy. But they didn\'t fit the bank\'s box.',
+    'Michael realized the problem wasn\'t the deals—it was the information gap. Investors and entrepreneurs didn\'t know their options because no one was teaching them. Banks don\'t explain hard money. Private lenders don\'t advertise. And the few resources that existed were either sales pitches or academic theory.',
+    'So Michael built what he wished existed: a place where real financing experts explain real options in plain English. No gatekeeping. No sales pressure. Just the knowledge you need to move fast and close deals.',
+    'Today, Capital Access is a team of financial professionals—former investment bankers, private lenders, and financial journalists—who\'ve collectively helped thousands of investors and entrepreneurs find the right financing for their deals.',
+  ],
+};
+
+const whyWeExist = {
+  title: 'Why We Exist',
+  problem: 'The traditional lending system is broken for deal-makers.',
+  points: [
+    {
+      title: 'Banks Move Too Slowly',
+      description: 'Traditional lenders take 45-60 days to close. Most deals can\'t wait that long. By the time a bank says yes or no, the property is gone.',
+    },
+    {
+      title: 'Information Is Gatekept',
+      description: 'Hard money, private lending, creative financing—these options exist, but banks don\'t tell you about them. Most investors learn about them only after losing deals.',
+    },
+    {
+      title: 'Advice Is Biased',
+      description: 'Most "financing help" comes from people trying to sell you something. Brokers push their products. Lenders hide the real costs. You need objective guidance.',
+    },
+    {
+      title: 'Good Deals Get Passed Over',
+      description: 'Every day, solid real estate deals and business opportunities fall through because the buyer didn\'t know their financing options. That\'s money left on the table.',
+    },
+  ],
+};
+
+const values = [
+  {
+    title: 'Honesty Over Hype',
+    description: 'We tell you the real costs, real risks, and real timelines. No sugarcoating. If a financing option isn\'t right for your deal, we\'ll say so.',
+    icon: 'shield',
+  },
+  {
+    title: 'Expertise You Can Trust',
+    description: 'Every piece of content is reviewed by financial professionals. We don\'t publish opinions—we publish what works, backed by real experience.',
+    icon: 'badge',
+  },
+  {
+    title: 'Action Over Theory',
+    description: 'We don\'t just explain concepts. We give you checklists, calculators, and step-by-step guides so you can actually use what you learn.',
+    icon: 'compass',
+  },
+  {
+    title: 'Speed Matters',
+    description: 'We know you\'re racing against deadlines. Our resources are designed to get you from "interested" to "funded" as fast as possible.',
+    icon: 'clock',
+  },
+];
+
+const teamMembers = [
+  {
+    name: 'Michael Torres',
+    title: 'Founder & Principal',
+    bio: 'Michael spent 20+ years in real estate investment and hard money lending before founding Capital Access. He\'s closed over 200 deals as a borrower and funded hundreds more as a lender. He built Capital Access because he saw too many good investors lose deals simply because they didn\'t know their options.',
+    credentials: ['20+ years in real estate investment', 'Former hard money lender', '200+ deals closed as borrower', 'Former Lending Director at WestCap Funding'],
+    image: 'michael-torres',
+  },
+  {
+    name: 'Jennifer Walsh',
+    title: 'Director of Education',
+    bio: 'Jennifer is a CFA charterholder and former investment banker at Goldman Sachs. She translates complex financing concepts into clear, actionable guidance. She oversees all educational content and ensures every article meets our accuracy standards.',
+    credentials: ['CFA Charterholder', 'Former Investment Banker, Goldman Sachs', 'MBA, Wharton School', '10+ years in structured finance'],
+    image: 'jennifer-walsh',
+  },
+  {
+    name: 'David Chen',
+    title: 'Lending Relations Director',
+    bio: 'David has 15+ years in private lending and has built relationships with over 50 hard money and private lenders across the country. He connects borrowers with the right lenders and ensures our lender network meets our quality standards.',
+    credentials: ['15+ years in private lending', 'Former VP at Pacific Private Lending', 'Built lender network across 30+ states', 'Specialist in creative deal structures'],
+    image: 'david-chen',
+  },
+  {
+    name: 'Sarah Mitchell',
+    title: 'Content & Research Lead',
+    bio: 'Sarah is a financial journalist and MBA who researches and writes our educational content. She\'s interviewed hundreds of lenders, borrowers, and industry experts to create the most comprehensive alternative financing resource available.',
+    credentials: ['Financial journalist, former Forbes contributor', 'MBA, Stanford Graduate School of Business', '500+ articles on alternative financing', 'Interviewed 200+ industry professionals'],
+    image: 'sarah-mitchell',
+  },
+];
+
+const credentials = [
+  { label: 'CFA Charterholders on Staff', icon: 'badge' },
+  { label: 'Former Investment Bankers', icon: 'building' },
+  { label: 'Former Hard Money Lenders', icon: 'key' },
+  { label: 'Real Estate Investors', icon: 'home' },
+  { label: 'Financial Journalists', icon: 'book' },
+  { label: 'MBA Graduates', icon: 'graduation' },
+];
+
+const timeline = [
+  { year: '2018', event: 'Capital Access founded by Michael Torres' },
+  { year: '2019', event: 'Published first 100 educational articles' },
+  { year: '2020', event: 'Launched hard money calculator and lender directory' },
+  { year: '2021', event: 'Team expanded to 4 full-time experts' },
+  { year: '2022', event: 'Reached 10,000+ investors helped' },
+  { year: '2023', event: 'Featured in Forbes, Bloomberg, and CNBC' },
+  { year: '2024', event: 'Launched direct lender matching service' },
+];
+---
+
+<BaseLayout title="About Us - Capital Access" description="Learn about Capital Access - your trusted partner for alternative financing education. We help real estate investors and entrepreneurs find funding when traditional banks say no.">
+  <Header />
+  
+  <main id="main-content" tabindex="-1">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-badge">Est. 2018</span>
+          <h1>{heroTitle}</h1>
+          <p class="hero-description">{heroDescription}</p>
+          <div class="hero-stats">
+            {stats.map(stat => (
+              <div class="stat-item">
+                <span class="stat-value">{stat.value}</span>
+                <span class="stat-label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="story section">
+      <div class="container">
+        <div class="story-content">
+          <div class="section-label">Our Story</div>
+          <h2>{ourStory.title}</h2>
+          <div class="story-text">
+            {ourStory.paragraphs.map((p, i) => (
+              <p class={i === 0 ? 'story-lead' : ''}>{p}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="why-exist section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">The Problem</div>
+          <h2>{whyWeExist.title}</h2>
+          <p class="section-lead">{whyWeExist.problem}</p>
+        </div>
+        <div class="why-grid">
+          {whyWeExist.points.map(point => (
+            <div class="why-card">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <h3>{point.title}</h3>
+              <p>{point.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="mission section">
+      <div class="container">
+        <div class="mission-content">
+          <div class="mission-text">
+            <div class="section-label">Our Mission</div>
+            <h2>Democratize Access to Alternative Financing</h2>
+            <p class="mission-lead">We believe every investor and entrepreneur deserves to know their financing options—not just the ones banks want to sell them.</p>
+            <p>Our mission is to close the information gap between traditional lending and the full spectrum of financing options available. We provide expert-vetted education, practical tools, and direct access to vetted lenders so you can move fast and close deals.</p>
+            <div class="mission-quote">
+              <blockquote>
+                "The best deals don't wait for bank approvals. We make sure you know your options before the clock runs out."
+              </blockquote>
+              <cite>— Michael Torres, Founder</cite>
+            </div>
+          </div>
+          <div class="mission-visual">
+            <div class="mission-card">
+              <div class="mission-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3>What We Provide</h3>
+              <ul>
+                <li>Expert-vetted educational content</li>
+                <li>Practical calculators and tools</li>
+                <li>Step-by-step financing guides</li>
+                <li>Access to vetted lender network</li>
+                <li>Free consultation with experts</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="values section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Our Values</div>
+          <h2>What We Stand For</h2>
+          <p>These aren't just words on a wall. They're how we make every decision.</p>
+        </div>
+        <div class="values-grid">
+          {values.map(value => (
+            <div class="value-card">
+              <div class="value-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  {value.icon === 'shield' && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></>}
+                  {value.icon === 'badge' && <><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></>}
+                  {value.icon === 'compass' && <><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></>}
+                  {value.icon === 'clock' && <><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></>}
+                </svg>
+              </div>
+              <h3>{value.title}</h3>
+              <p>{value.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="team section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Our Team</div>
+          <h2>Meet the Experts</h2>
+          <p>Financial professionals who've been in your shoes—and built what was missing.</p>
+        </div>
+        <div class="team-grid">
+          {teamMembers.map((member, i) => (
+            <div class="team-card" id={`team-${member.image}`}>
+              <div class="team-image" role="img" aria-label={`Photo of ${member.name}`}>
+                <div class="team-image-placeholder">
+                  <span>{member.name.split(' ').map(n => n[0]).join('')}</span>
+                </div>
+              </div>
+              <div class="team-content">
+                <div class="team-header">
+                  <h3>{member.name}</h3>
+                  <span class="team-title">{member.title}</span>
+                </div>
+                <p class="team-bio">{member.bio}</p>
+                <div class="team-credentials">
+                  <h4>Credentials</h4>
+                  <ul>
+                    {member.credentials.map(cred => (
+                      <li>{cred}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="credentials section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Trust Signals</div>
+          <h2>Why Investors Trust Us</h2>
+          <p>We're not just content creators. We're practitioners.</p>
+        </div>
+        <div class="credentials-grid">
+          {credentials.map(cred => (
+            <div class="credential-item">
+              <div class="credential-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  {cred.icon === 'badge' && <><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></>}
+                  {cred.icon === 'building' && <><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></>}
+                  {cred.icon === 'key' && <><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></>}
+                  {cred.icon === 'home' && <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></>}
+                  {cred.icon === 'book' && <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></>}
+                  {cred.icon === 'graduation' && <><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></>}
+                </svg>
+              </div>
+              <span class="credential-label">{cred.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="timeline section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">Our Journey</div>
+          <h2>How We Got Here</h2>
+        </div>
+        <div class="timeline-grid">
+          {timeline.map((item, i) => (
+            <div class="timeline-item">
+              <div class="timeline-year">{item.year}</div>
+              <div class="timeline-event">{item.event}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="cta section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Find Your Funding?</h2>
+          <p>Get matched with the right financing for your next deal. Free consultation, no obligation.</p>
+          <div class="cta-actions">
+            <Button href="/contact" size="lg">Get Your Free Consultation</Button>
+            <Button variant="outline-gold" href="/services" size="lg">Explore Financing Options</Button>
+          </div>
+          <p class="cta-note">No obligation. 100% confidential. Expert guidance, not sales pressure.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .section {
+    padding: 4rem 0;
+  }
+  
+  @media (min-width: 768px) {
+    .section {
+      padding: 5rem 0;
+    }
+  }
+  
+  .section-dark {
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  .section-alt {
+    background: var(--bg-tertiary);
+  }
+  
+  .section-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .section-dark .section-label {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+  
+  .section-header h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  
+  .section-dark .section-header p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .section-lead {
+    font-size: 1.5rem !important;
+    font-weight: 600;
+    color: var(--color-primary) !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .section-dark .section-lead {
+    color: var(--color-secondary) !important;
+  }
+  
+  .hero {
+    padding: 5rem 0 4rem;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, white 50%, var(--bg-tertiary) 100%);
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(27, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+  
+  @media (min-width: 768px) {
+    .hero {
+      padding: 7rem 0 5rem;
+    }
+  }
+  
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero h1 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+  
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+  }
+  
+  @media (min-width: 768px) {
+    .hero-stats {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+  
+  .story {
+    background: white;
+  }
+  
+  .story-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .story-content h2 {
+    margin-bottom: 2rem;
+  }
+  
+  .story-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .story-lead {
+    font-size: 1.25rem !important;
+    font-weight: 500;
+  }
+  
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .why-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .why-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-secondary);
+  }
+  
+  .why-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .why-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--color-primary);
+  }
+  
+  .why-card h3 {
+    font-size: 1.25rem;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+  
+  .why-card p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .mission {
+    background: white;
+  }
+  
+  .mission-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  
+  @media (min-width: 768px) {
+    .mission-content {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+  
+  .mission-text h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .mission-lead {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mission-text p {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+  }
+  
+  .mission-quote {
+    background: var(--bg-tertiary);
+    border-left: 4px solid var(--color-secondary);
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .mission-quote blockquote {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--color-primary);
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+  }
+  
+  .mission-quote cite {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    font-style: normal;
+  }
+  
+  .mission-card {
+    background: var(--color-primary);
+    color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    position: sticky;
+    top: 100px;
+  }
+  
+  .mission-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .mission-card-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-primary);
+  }
+  
+  .mission-card h3 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .mission-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .mission-card li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9375rem;
+  }
+  
+  .mission-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--color-secondary);
+    border-radius: 50%;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .value-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(27, 54, 93, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(27, 54, 93, 0.12);
+    border-color: var(--color-secondary);
+  }
+  
+  .value-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .value-icon svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+  }
+  
+  .value-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .value-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .team {
+    background: white;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  @media (min-width: 768px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .team-card {
+    background: var(--bg-primary);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(27, 54, 93, 0.08);
+    transition: all 0.3s ease;
+  }
+  
+  .team-card:hover {
+    box-shadow: 0 8px 24px rgba(27, 54, 93, 0.12);
+    transform: translateY(-4px);
+  }
+  
+  .team-image {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .team-image-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--color-secondary);
+  }
+  
+  .team-image-placeholder span {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .team-content {
+    padding: 2rem;
+  }
+  
+  .team-header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  
+  .team-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .team-title {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+  }
+  
+  .team-bio {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .team-credentials h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 0.75rem;
+  }
+  
+  .team-credentials ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .team-credentials li {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+  
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .credentials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .credentials-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  
+  .credential-item {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .credential-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-secondary);
+  }
+  
+  .credential-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 0.75rem;
+    color: var(--color-secondary);
+  }
+  
+  .credential-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .credential-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+  
+  .timeline {
+    background: var(--bg-tertiary);
+  }
+  
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    position: relative;
+  }
+  
+  @media (min-width: 768px) {
+    .timeline-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .timeline-grid {
+      grid-template-columns: repeat(7, 1fr);
+    }
+  }
+  
+  .timeline-item {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(27, 54, 93, 0.06);
+    position: relative;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -0.75rem;
+    width: 1.5rem;
+    height: 2px;
+    background: var(--color-secondary);
+    display: none;
+  }
+  
+  @media (min-width: 1024px) {
+    .timeline-item::before {
+      display: block;
+    }
+    .timeline-item:last-child::before {
+      display: none;
+    }
+  }
+  
+  .timeline-year {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-event {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+  
+  .cta {
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding-bottom: 5rem;
+  }
+  
+  .cta-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .cta h2 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .cta p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+  
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-note {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+</style>
