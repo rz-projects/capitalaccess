@@ -9,6 +9,7 @@ const navLinks = [
 ---
 
 <header class="header">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <nav class="nav container">
     <a href="/" class="logo">
       <span class="logo-text">Capital Access</span>
@@ -29,6 +30,27 @@ const navLinks = [
 </header>
 
 <style>
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 4px 4px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 9999;
+    transition: top 0.2s ease;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+  
   .header {
     position: sticky;
     top: 0;
