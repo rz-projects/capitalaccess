@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://capitalaccess.org',
+  site: 'https://rz-projects.github.io',
+  base: '/capitalaccess',
   output: 'static',
   build: {
     assets: 'assets'
