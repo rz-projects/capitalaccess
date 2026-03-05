@@ -5,74 +5,74 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
 
-const heroTitle = 'Your Path to Financial Clarity';
-const heroDescription = 'Expert guidance for building lasting wealth and financial security';
+const heroTitle = 'Capital for Those Who Move Fast';
+const heroDescription = 'Hard money loans. Private lending. Creative financing. When traditional banks can\'t move fast enough, we show you who can—and how to make it work for your next deal.';
 
 const trustIndicators = [
-  { value: '20+', label: 'Years Experience' },
-  { value: '$2B+', label: 'Assets Under Advisory' },
-  { value: '5,000+', label: 'Clients Served' },
-  { value: '98%', label: 'Client Satisfaction' },
+  { value: '15+', label: 'Years of Industry Expertise' },
+  { value: '500+', label: 'Educational Articles' },
+  { value: 'Expert-Vetted', label: 'Content' },
+  { value: 'Direct', label: 'Lender Connections' },
 ];
 
 const services = [
   {
-    title: 'Financial Planning',
-    description: 'Comprehensive strategies tailored to your unique goals and circumstances.',
-    features: 'Retirement planning • Tax optimization • Estate planning',
-    href: '/services/financial-planning',
-    icon: 'chart',
+    title: 'Hard Money Loans',
+    description: 'Fast, asset-based financing for real estate investors. Close in days, not months. Based on property value, not your credit score.',
+    features: 'Fix & flip • Bridge financing • Rental properties • 10-14 day closings',
+    href: '/services/hard-money-loans',
+    icon: 'key',
   },
   {
-    title: 'Investment Services',
-    description: 'Expert guidance on building and managing your portfolio for long-term growth.',
-    features: 'Portfolio management • Risk assessment • Market analysis',
-    href: '/services/investment',
-    icon: 'growth',
+    title: 'Private Money Lending',
+    description: 'Direct access to private capital for real estate and business investments. Flexible terms, relationship-based lending, creative deal structures.',
+    features: 'Business investment • Real estate • Flexible terms • Direct relationships',
+    href: '/services/private-lending',
+    icon: 'handshake',
   },
   {
-    title: 'Wealth Management',
-    description: 'Personalized solutions for high-net-worth individuals and families.',
-    features: 'Asset protection • Legacy planning • Family governance',
-    href: '/services/wealth-management',
-    icon: 'shield',
+    title: 'Business & Working Capital',
+    description: 'Funding solutions for entrepreneurs and small business owners. Acquisition financing, working capital, and growth funding when banks say no.',
+    features: 'Business acquisition • Working capital • Expansion funding • Quick approval',
+    href: '/services/business-capital',
+    icon: 'building',
   },
 ];
 
 const whyChooseUs = [
-  { title: 'Licensed & Certified', description: 'SEC registered, FINRA member, fiduciary duty', icon: 'shield' },
-  { title: 'Award-Winning Service', description: "Barron's Top 100, Forbes Best-In-State", icon: 'growth' },
-  { title: 'Expert Team', description: 'CFP®, CFA®, CPA professionals on staff', icon: 'chart' },
-  { title: 'Client-First Approach', description: 'Fee-only advisory, no hidden commissions', icon: 'shield' },
+  { title: 'Expert-Vetted Content', description: 'Every article reviewed by financial professionals. Real expertise, not just opinions.', icon: 'badge' },
+  { title: 'Action-Oriented Guidance', description: 'Step-by-step processes, checklists, and calculators. Not just information—direction.', icon: 'compass' },
+  { title: 'Lender Connections', description: 'Access to our network of vetted hard money and private lenders. Real funding sources, not just leads.', icon: 'link' },
+  { title: 'Transparent & Honest', description: 'We tell you the real costs, real risks, and real timelines. No sugarcoating, no hidden agendas.', icon: 'shield' },
 ];
 
 const teamMembers = [
-  { name: 'Sarah Mitchell', title: 'CEO & Chief Investment Officer', credentials: 'CFP®, CFA®', years: '25+ years experience' },
-  { name: 'James Chen', title: 'Director of Financial Planning', credentials: 'CFP®, CPA', years: '18+ years experience' },
-  { name: 'Maria Rodriguez', title: 'Senior Wealth Advisor', credentials: 'CFP®, ChFC®', years: '15+ years experience' },
-  { name: 'David Thompson', title: 'Portfolio Manager', credentials: 'CFA®, CAIA', years: '12+ years experience' },
+  { name: 'Michael Torres', title: 'Founder & Principal', credentials: '20+ years in real estate investment', years: 'Former hard money lender' },
+  { name: 'Jennifer Walsh', title: 'Director of Education', credentials: 'CFA, former investment banker', years: 'Translates complex financing' },
+  { name: 'David Chen', title: 'Lending Relations Director', credentials: '15+ years in private lending', years: 'Connects borrowers to lenders' },
+  { name: 'Sarah Mitchell', title: 'Content & Research Lead', credentials: 'Financial journalist, MBA', years: 'Researches every article' },
 ];
 
 const resources = [
-  { title: 'Retirement Calculator', description: 'Estimate how much you need to save for a comfortable retirement.', cta: 'Try Calculator', icon: 'calculator' },
-  { title: 'Estate Planning Guide', description: 'Comprehensive guide to protecting and transferring your wealth.', cta: 'Download Free Guide', icon: 'book' },
-  { title: 'Risk Tolerance Quiz', description: 'Discover your investment risk profile in 5 minutes.', cta: 'Take Quiz', icon: 'checklist' },
+  { title: 'Hard Money Calculator', description: 'Estimate your total costs, monthly payments, and ROI for hard money financing.', cta: 'Use Calculator', icon: 'calculator' },
+  { title: 'Fix & Flip Financing Guide', description: 'Complete guide to funding your first (or next) fix-and-flip project from purchase to sale.', cta: 'Download Free Guide', icon: 'book' },
+  { title: 'Lender Comparison Checklist', description: '15-point checklist to evaluate and compare hard money and private lenders.', cta: 'Get Checklist', icon: 'checklist' },
 ];
 ---
 
-<BaseLayout title="Capital Access - Your Path to Financial Clarity">
+<BaseLayout title="Capital Access - Capital for Those Who Move Fast">
   <Header />
   
   <main id="main-content" tabindex="-1">
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <span class="hero-badge">Trusted by 5,000+ Clients Since 2003</span>
+          <span class="hero-badge">Trusted by 10,000+ Investors & Entrepreneurs</span>
           <h1>{heroTitle}</h1>
           <p class="hero-description">{heroDescription}</p>
           <div class="hero-actions">
-            <Button href="/contact" size="lg">Get Your Free Consultation</Button>
-            <Button variant="outline" href="/services" size="lg">Explore Our Services</Button>
+            <Button href="/contact" size="lg">Find Your Funding Match</Button>
+            <Button variant="outline" href="/services" size="lg">Explore Financing Options</Button>
           </div>
           <div class="hero-trust">
             {trustIndicators.map(indicator => (
@@ -91,10 +91,10 @@ const resources = [
         <p class="trust-bar-label">As Featured In</p>
         <div class="logo-strip">
           <span class="logo-placeholder">Forbes</span>
-          <span class="logo-placeholder">WSJ</span>
           <span class="logo-placeholder">Bloomberg</span>
           <span class="logo-placeholder">CNBC</span>
-          <span class="logo-placeholder">Kiplinger</span>
+          <span class="logo-placeholder">Yahoo Finance</span>
+          <span class="logo-placeholder">Business Insider</span>
           <span class="logo-placeholder">NerdWallet</span>
         </div>
       </div>
@@ -103,8 +103,8 @@ const resources = [
     <section class="services section">
       <div class="container">
         <div class="section-header">
-          <h2>Comprehensive Financial Solutions</h2>
-          <p>Tailored strategies for every stage of your financial journey</p>
+          <h2>Alternative Financing Solutions</h2>
+          <p>Not every deal fits in a bank's box. Here's how to fund yours.</p>
         </div>
         <div class="services-grid">
           {services.map(service => (
@@ -123,17 +123,18 @@ const resources = [
     <section class="why-choose section">
       <div class="container">
         <div class="section-header">
-          <h2>Why Choose Capital Access</h2>
-          <p>Built on trust, powered by expertise</p>
+          <h2>Why Capital Access</h2>
+          <p>Knowledge that moves you from "interested" to "funded"</p>
         </div>
         <div class="why-grid">
           {whyChooseUs.map(item => (
             <div class="why-item">
               <div class="why-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  {item.icon === 'shield' && <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>}
-                  {item.icon === 'growth' && <><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></>}
-                  {item.icon === 'chart' && <><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></>}
+                  {item.icon === 'badge' && <><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></>}
+                  {item.icon === 'compass' && <><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></>}
+                  {item.icon === 'link' && <><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></>}
+                  {item.icon === 'shield' && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></>}
                 </svg>
               </div>
               <h3 class="why-title">{item.title}</h3>
@@ -148,7 +149,7 @@ const resources = [
       <div class="container">
         <div class="section-header">
           <h2>Meet Our Experts</h2>
-          <p>Experienced professionals dedicated to your financial success</p>
+          <p>Financial professionals who've been in your shoes</p>
         </div>
         <div class="team-grid">
           {teamMembers.map(member => (
@@ -164,7 +165,7 @@ const resources = [
           ))}
         </div>
         <div class="team-cta">
-          <Button variant="outline-gold" href="/about">View Full Team</Button>
+          <Button variant="outline-gold" href="/about">Meet the Full Team</Button>
         </div>
       </div>
     </section>
@@ -173,7 +174,7 @@ const resources = [
       <div class="container">
         <div class="section-header">
           <h2>Tools & Resources</h2>
-          <p>Free resources to help you plan with confidence</p>
+          <p>Calculate, compare, and plan with confidence</p>
         </div>
         <div class="resources-grid">
           {resources.map(resource => (
@@ -197,17 +198,17 @@ const resources = [
     <section class="testimonials section">
       <div class="container">
         <div class="section-header">
-          <h2>What Our Clients Say</h2>
-          <p>Real stories from real clients</p>
+          <h2>What Our Readers Say</h2>
+          <p>Real stories from real investors</p>
         </div>
         <div class="testimonial-featured">
           <span class="testimonial-quote-mark">"</span>
-          <p class="testimonial-quote">Capital Access helped us navigate a complex financial situation with clarity and confidence. Their expertise saved us years of uncertainty.</p>
+          <p class="testimonial-quote">Capital Access helped me understand hard money loans when I didn't even know they existed. Their guides walked me through every step, and I closed on my first investment property in 12 days. The traditional lender I started with was still 'reviewing my application.'</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" role="img" aria-label="Photo of Robert & Jennifer K."></div>
+            <div class="testimonial-avatar" role="img" aria-label="Photo of Marcus R."></div>
             <div class="testimonial-author-info">
-              <p class="testimonial-name">Robert & Jennifer K.</p>
-              <p class="testimonial-meta">Austin, TX • Wealth Management Client</p>
+              <p class="testimonial-name">Marcus R.</p>
+              <p class="testimonial-meta">Phoenix, AZ • First-time real estate investor</p>
             </div>
           </div>
           <div class="testimonial-rating">
@@ -220,13 +221,13 @@ const resources = [
     <section class="final-cta section">
       <div class="container">
         <div class="cta-content">
-          <h2>Ready to Start Your Financial Journey?</h2>
-          <p>Schedule a free consultation with one of our certified advisors.</p>
+          <h2>Ready to Find Your Funding?</h2>
+          <p>Get matched with the right financing for your next deal. Free consultation, no obligation.</p>
           <div class="cta-actions">
-            <Button variant="secondary" size="lg">Schedule Free Consultation</Button>
+            <Button variant="secondary" size="lg">Get Your Free Consultation</Button>
             <Button variant="outline-gold" size="lg">Call (555) 123-4567</Button>
           </div>
-          <p class="cta-note">No obligation. 100% confidential.</p>
+          <p class="cta-note">No obligation. 100% confidential. Expert guidance, not sales pressure.</p>
         </div>
       </div>
     </section>
