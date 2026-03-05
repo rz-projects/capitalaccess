@@ -6,92 +6,227 @@ import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
 
 const heroTitle = 'Your Path to Financial Clarity';
-const heroDescription = 'Trusted guidance for individuals and businesses seeking to build lasting wealth and financial security.';
+const heroDescription = 'Expert guidance for building lasting wealth and financial security';
+
+const trustIndicators = [
+  { value: '20+', label: 'Years Experience' },
+  { value: '$2B+', label: 'Assets Under Advisory' },
+  { value: '5,000+', label: 'Clients Served' },
+  { value: '98%', label: 'Client Satisfaction' },
+];
 
 const services = [
   {
     title: 'Financial Planning',
-    description: 'Comprehensive strategies tailored to your unique financial goals and circumstances.',
+    description: 'Comprehensive strategies tailored to your unique goals and circumstances.',
+    features: 'Retirement planning • Tax optimization • Estate planning',
     href: '/services/financial-planning',
-    tag: 'Planning',
+    icon: 'chart',
   },
   {
     title: 'Investment Services',
-    description: 'Expert guidance on building and managing your investment portfolio for long-term growth.',
+    description: 'Expert guidance on building and managing your portfolio for long-term growth.',
+    features: 'Portfolio management • Risk assessment • Market analysis',
     href: '/services/investment',
-    tag: 'Investment',
+    icon: 'growth',
   },
   {
     title: 'Wealth Management',
-    description: 'Personalized wealth management solutions for high-net-worth individuals and families.',
+    description: 'Personalized solutions for high-net-worth individuals and families.',
+    features: 'Asset protection • Legacy planning • Family governance',
     href: '/services/wealth-management',
-    tag: 'Wealth',
+    icon: 'shield',
   },
 ];
 
-const stats = [
-  { value: '20+', label: 'Years of Experience' },
-  { value: '5,000+', label: 'Clients Served' },
-  { value: '$2B+', label: 'Assets Under Advisory' },
-  { value: '98%', label: 'Client Satisfaction' },
+const whyChooseUs = [
+  { title: 'Licensed & Certified', description: 'SEC registered, FINRA member, fiduciary duty', icon: 'shield' },
+  { title: 'Award-Winning Service', description: "Barron's Top 100, Forbes Best-In-State", icon: 'growth' },
+  { title: 'Expert Team', description: 'CFP®, CFA®, CPA professionals on staff', icon: 'chart' },
+  { title: 'Client-First Approach', description: 'Fee-only advisory, no hidden commissions', icon: 'shield' },
+];
+
+const teamMembers = [
+  { name: 'Sarah Mitchell', title: 'CEO & Chief Investment Officer', credentials: 'CFP®, CFA®', years: '25+ years experience' },
+  { name: 'James Chen', title: 'Director of Financial Planning', credentials: 'CFP®, CPA', years: '18+ years experience' },
+  { name: 'Maria Rodriguez', title: 'Senior Wealth Advisor', credentials: 'CFP®, ChFC®', years: '15+ years experience' },
+  { name: 'David Thompson', title: 'Portfolio Manager', credentials: 'CFA®, CAIA', years: '12+ years experience' },
+];
+
+const resources = [
+  { title: 'Retirement Calculator', description: 'Estimate how much you need to save for a comfortable retirement.', cta: 'Try Calculator', icon: 'calculator' },
+  { title: 'Estate Planning Guide', description: 'Comprehensive guide to protecting and transferring your wealth.', cta: 'Download Free Guide', icon: 'book' },
+  { title: 'Risk Tolerance Quiz', description: 'Discover your investment risk profile in 5 minutes.', cta: 'Take Quiz', icon: 'checklist' },
 ];
 ---
 
-<BaseLayout title="Home">
+<BaseLayout title="Capital Access - Your Path to Financial Clarity">
   <Header />
   
   <main>
     <section class="hero">
       <div class="container">
         <div class="hero-content">
+          <span class="hero-badge">Trusted by 5,000+ Clients Since 2003</span>
           <h1>{heroTitle}</h1>
           <p class="hero-description">{heroDescription}</p>
           <div class="hero-actions">
-            <Button href="/contact" size="lg">Get Started</Button>
-            <Button variant="outline" href="/services" size="lg">Our Services</Button>
+            <Button href="/contact" size="lg">Get Your Free Consultation</Button>
+            <Button variant="outline" href="/services" size="lg">Explore Our Services</Button>
+          </div>
+          <div class="hero-trust">
+            {trustIndicators.map(indicator => (
+              <div class="trust-item">
+                <span class="trust-value">{indicator.value}</span>
+                <span class="trust-label">{indicator.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
     
-    <section class="stats">
+    <section class="trust-bar">
       <div class="container">
-        <div class="stats-grid">
-          {stats.map(stat => (
-            <div class="stat">
-              <span class="stat-value">{stat.value}</span>
-              <span class="stat-label">{stat.label}</span>
-            </div>
-          ))}
+        <p class="trust-bar-label">As Featured In</p>
+        <div class="logo-strip">
+          <span class="logo-placeholder">Forbes</span>
+          <span class="logo-placeholder">WSJ</span>
+          <span class="logo-placeholder">Bloomberg</span>
+          <span class="logo-placeholder">CNBC</span>
+          <span class="logo-placeholder">Kiplinger</span>
+          <span class="logo-placeholder">NerdWallet</span>
         </div>
       </div>
     </section>
     
-    <section class="services">
+    <section class="services section">
       <div class="container">
         <div class="section-header">
-          <h2>Our Services</h2>
-          <p>Comprehensive financial solutions designed to help you achieve your goals.</p>
+          <h2>Comprehensive Financial Solutions</h2>
+          <p>Tailored strategies for every stage of your financial journey</p>
         </div>
         <div class="services-grid">
           {services.map(service => (
             <Card
               title={service.title}
               description={service.description}
+              features={service.features}
               href={service.href}
-              tag={service.tag}
+              icon={service.icon}
             />
           ))}
         </div>
       </div>
     </section>
     
-    <section class="cta">
+    <section class="why-choose section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Choose Capital Access</h2>
+          <p>Built on trust, powered by expertise</p>
+        </div>
+        <div class="why-grid">
+          {whyChooseUs.map(item => (
+            <div class="why-item">
+              <div class="why-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  {item.icon === 'shield' && <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>}
+                  {item.icon === 'growth' && <><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></>}
+                  {item.icon === 'chart' && <><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></>}
+                </svg>
+              </div>
+              <h3 class="why-title">{item.title}</h3>
+              <p class="why-description">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="team section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Meet Our Experts</h2>
+          <p>Experienced professionals dedicated to your financial success</p>
+        </div>
+        <div class="team-grid">
+          {teamMembers.map(member => (
+            <div class="team-card">
+              <div class="team-image"></div>
+              <div class="team-info">
+                <h3 class="team-name">{member.name}</h3>
+                <p class="team-title">{member.title}</p>
+                <span class="team-credentials">{member.credentials}</span>
+                <p class="team-years">{member.years}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="team-cta">
+          <Button variant="outline-gold" href="/about">View Full Team</Button>
+        </div>
+      </div>
+    </section>
+    
+    <section class="resources section section-light">
+      <div class="container">
+        <div class="section-header">
+          <h2>Tools & Resources</h2>
+          <p>Free resources to help you plan with confidence</p>
+        </div>
+        <div class="resources-grid">
+          {resources.map(resource => (
+            <div class="resource-card">
+              <div class="resource-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  {resource.icon === 'calculator' && <><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/></>}
+                  {resource.icon === 'book' && <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></>}
+                  {resource.icon === 'checklist' && <><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></>}
+                </svg>
+              </div>
+              <h3 class="resource-title">{resource.title}</h3>
+              <p class="resource-description">{resource.description}</p>
+              <Button variant="primary" size="sm">{resource.cta}</Button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="testimonials section">
+      <div class="container">
+        <div class="section-header">
+          <h2>What Our Clients Say</h2>
+          <p>Real stories from real clients</p>
+        </div>
+        <div class="testimonial-featured">
+          <span class="testimonial-quote-mark">"</span>
+          <p class="testimonial-quote">Capital Access helped us navigate a complex financial situation with clarity and confidence. Their expertise saved us years of uncertainty.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar"></div>
+            <div class="testimonial-author-info">
+              <p class="testimonial-name">Robert & Jennifer K.</p>
+              <p class="testimonial-meta">Austin, TX • Wealth Management Client</p>
+            </div>
+          </div>
+          <div class="testimonial-rating">
+            <span>★★★★★</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="final-cta section">
       <div class="container">
         <div class="cta-content">
-          <h2>Ready to Start Your Journey?</h2>
-          <p>Schedule a consultation with one of our financial advisors today.</p>
-          <Button href="/contact" variant="secondary" size="lg">Schedule Consultation</Button>
+          <h2>Ready to Start Your Financial Journey?</h2>
+          <p>Schedule a free consultation with one of our certified advisors.</p>
+          <div class="cta-actions">
+            <Button variant="secondary" size="lg">Schedule Free Consultation</Button>
+            <Button variant="outline-gold" size="lg">Call (555) 123-4567</Button>
+          </div>
+          <p class="cta-note">No obligation. 100% confidential.</p>
         </div>
       </div>
     </section>
@@ -101,106 +236,167 @@ const stats = [
 </BaseLayout>
 
 <style>
+  .section {
+    padding: 4rem 0;
+  }
+  
+  @media (min-width: 768px) {
+    .section {
+      padding: 5rem 0;
+    }
+  }
+  
+  .section-light {
+    background: var(--bg-tertiary);
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+  }
+  
+  .section-header h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .section-header p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+  }
+  
   .hero {
-    padding: var(--spacing-20) 0;
-    background: linear-gradient(135deg, var(--color-neutral-50) 0%, white 100%);
+    padding: 5rem 0 4rem;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, white 50%, var(--bg-tertiary) 100%);
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(27, 54, 93, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
   }
   
   @media (min-width: 768px) {
     .hero {
-      padding: var(--spacing-32) 0;
+      padding: 7.5rem 0 5rem;
     }
   }
   
   .hero-content {
-    max-width: 700px;
-    text-align: center;
+    max-width: 800px;
     margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
   }
   
   .hero h1 {
-    font-size: var(--font-size-5xl);
-    margin-bottom: var(--spacing-6);
-  }
-  
-  @media (min-width: 768px) {
-    .hero h1 {
-      font-size: var(--font-size-6xl);
-    }
+    margin-bottom: 1.5rem;
   }
   
   .hero-description {
-    font-size: var(--font-size-xl);
-    color: var(--color-neutral-500);
-    margin-bottom: var(--spacing-8);
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
   }
   
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-4);
+    gap: 1rem;
     justify-content: center;
+    margin-bottom: 3rem;
   }
   
-  .stats {
-    padding: var(--spacing-12) 0;
-    background: var(--color-primary);
-  }
-  
-  .stats-grid {
+  .hero-trust {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-8);
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
   }
   
   @media (min-width: 768px) {
-    .stats-grid {
+    .hero-trust {
       grid-template-columns: repeat(4, 1fr);
     }
   }
   
-  .stat {
+  .trust-item {
     text-align: center;
-    color: white;
   }
   
-  .stat-value {
+  .trust-value {
     display: block;
     font-family: var(--font-heading);
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--color-secondary);
-    margin-bottom: var(--spacing-2);
+    margin-bottom: 0.25rem;
   }
   
-  .stat-label {
-    font-size: var(--font-size-sm);
-    color: rgba(255, 255, 255, 0.8);
+  .trust-label {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
   }
   
-  .services {
-    padding: var(--spacing-16) 0;
+  .trust-bar {
+    padding: 2.5rem 0;
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
   }
   
-  .section-header {
+  .trust-bar-label {
     text-align: center;
-    max-width: 600px;
-    margin: 0 auto var(--spacing-12);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
   }
   
-  .section-header h2 {
-    margin-bottom: var(--spacing-4);
+  .logo-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
   }
   
-  .section-header p {
-    color: var(--color-neutral-500);
-    font-size: var(--font-size-lg);
+  .logo-placeholder {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    opacity: 0.4;
+    transition: opacity 0.2s ease;
+  }
+  
+  .logo-placeholder:hover {
+    opacity: 0.8;
   }
   
   .services-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--spacing-8);
+    gap: 2rem;
   }
   
   @media (min-width: 768px) {
@@ -215,9 +411,259 @@ const stats = [
     }
   }
   
-  .cta {
-    padding: var(--spacing-16) 0;
-    background: var(--color-neutral-100);
+  .why-choose {
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  .why-choose .section-header h2 {
+    color: white;
+  }
+  
+  .why-choose .section-header p {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .why-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .why-item {
+    text-align: center;
+  }
+  
+  .why-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    background: transparent;
+  }
+  
+  .why-icon svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+  }
+  
+  .why-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .why-description {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .team-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .team-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(27, 54, 93, 0.08);
+    transition: all 0.3s ease;
+  }
+  
+  .team-card:hover {
+    box-shadow: 0 8px 24px rgba(27, 54, 93, 0.12);
+    transform: translateY(-4px);
+  }
+  
+  .team-image {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-light) 100%);
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+  
+  .team-card:hover .team-image {
+    filter: grayscale(0%);
+  }
+  
+  .team-info {
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .team-name {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .team-title {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .team-credentials {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .team-years {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin: 0;
+  }
+  
+  .team-cta {
+    text-align: center;
+  }
+  
+  .resources-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .resources-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .resource-card {
+    background: var(--bg-primary);
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: border-color 0.2s ease;
+  }
+  
+  .resource-card:hover {
+    border-color: var(--color-secondary);
+  }
+  
+  .resource-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    color: var(--color-primary);
+  }
+  
+  .resource-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .resource-title {
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+  
+  .resource-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .testimonial-featured {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(27, 54, 93, 0.1);
+  }
+  
+  .testimonial-quote-mark {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--color-secondary);
+    line-height: 1;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .testimonial-quote {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--color-primary);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .testimonial-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-light) 100%);
+  }
+  
+  .testimonial-author-info {
+    text-align: left;
+  }
+  
+  .testimonial-name {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .testimonial-meta {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    margin: 0;
+  }
+  
+  .testimonial-rating {
+    margin-top: 1rem;
+    color: var(--color-secondary);
+    font-size: 1.25rem;
+    letter-spacing: 0.25rem;
+  }
+  
+  .final-cta {
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
   }
   
   .cta-content {
@@ -226,13 +672,28 @@ const stats = [
     margin: 0 auto;
   }
   
-  .cta h2 {
-    margin-bottom: var(--spacing-4);
+  .final-cta h2 {
+    color: white;
+    margin-bottom: 1rem;
   }
   
-  .cta p {
-    color: var(--color-neutral-500);
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-8);
+  .final-cta p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+  
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-note {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
   }
 </style>

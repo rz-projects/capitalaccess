@@ -5,12 +5,15 @@ interface Props {
   href?: string;
   image?: string;
   tag?: string;
+  icon?: string;
+  features?: string;
+  variant?: 'default' | 'elevated' | 'flat' | 'dark';
 }
 
-const { title, description, href, image, tag } = Astro.props;
+const { title, description, href, image, tag, icon, features, variant = 'default' } = Astro.props;
 ---
 
-<article class="card">
+<article class:list={['card', `card-${variant}`]}>
   {image && (
     <div class="card-image">
       <img src={image} alt={title} loading="lazy" />
@@ -18,28 +21,98 @@ const { title, description, href, image, tag } = Astro.props;
   )}
   
   <div class="card-content">
+    {icon && (
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          {icon === 'chart' && <><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></>}
+          {icon === 'growth' && <><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></>}
+          {icon === 'shield' && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></>}
+          {icon === 'calculator' && <><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="8" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="16" y1="18" x2="16" y2="18.01"/></>}
+          {icon === 'book' && <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></>}
+          {icon === 'checklist' && <><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></>}
+        </svg>
+      </div>
+    )}
     {tag && <span class="card-tag">{tag}</span>}
     <h3 class="card-title">
       {href ? <a href={href}>{title}</a> : title}
     </h3>
     {description && <p class="card-description">{description}</p>}
+    {features && <p class="card-features">{features}</p>}
     <slot />
+    {href && (
+      <a href={href} class="card-cta">
+        Learn More
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    )}
   </div>
 </article>
 
 <style>
   .card {
-    background: var(--color-neutral-50);
-    border-radius: var(--radius-md);
+    background: white;
+    border-radius: 8px;
     overflow: hidden;
-    border-top: 3px solid var(--color-secondary);
-    box-shadow: var(--shadow-md);
-    transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+    box-shadow: 0 4px 12px rgba(27, 54, 93, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--color-secondary);
   }
   
   .card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(27, 54, 93, 0.12);
+    transform: translateY(-4px);
+  }
+  
+  .card-elevated {
+    box-shadow: 0 8px 24px rgba(27, 54, 93, 0.12);
+  }
+  
+  .card-elevated:hover {
+    box-shadow: 0 12px 32px rgba(27, 54, 93, 0.16);
+  }
+  
+  .card-flat {
+    background: var(--bg-primary);
+    box-shadow: none;
+    border: 2px solid var(--border-light);
+  }
+  
+  .card-flat:hover {
+    border-color: var(--color-secondary);
+  }
+  
+  .card-dark {
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  .card-dark::before {
+    background: var(--color-secondary);
+  }
+  
+  .card-dark .card-title {
+    color: white;
+  }
+  
+  .card-dark .card-description {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .card-dark .card-features {
+    color: rgba(255, 255, 255, 0.7);
   }
   
   .card-image {
@@ -54,25 +127,44 @@ const { title, description, href, image, tag } = Astro.props;
   }
   
   .card-content {
-    padding: var(--spacing-6);
+    padding: 2rem;
+  }
+  
+  .card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-icon svg {
+    width: 28px;
+    height: 28px;
+    color: white;
   }
   
   .card-tag {
     display: inline-block;
-    padding: var(--spacing-1) var(--spacing-3);
-    background: rgba(27, 54, 93, 0.1);
-    color: var(--color-primary);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
+    padding: 0.25rem 0.75rem;
+    background: var(--color-primary);
+    color: white;
+    font-size: 0.625rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--spacing-3);
+    border-radius: 2px;
+    margin-bottom: 1rem;
   }
   
   .card-title {
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-3);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
   }
   
   .card-title a {
@@ -84,9 +176,40 @@ const { title, description, href, image, tag } = Astro.props;
   }
   
   .card-description {
-    color: var(--color-neutral-500);
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .card-features {
+    color: var(--text-tertiary);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+  }
+  
+  .card-cta:hover {
+    color: var(--color-secondary-dark);
+    gap: 0.75rem;
+  }
+  
+  .card-cta svg {
+    transition: transform 0.2s ease;
+  }
+  
+  .card-cta:hover svg {
+    transform: translateX(4px);
   }
 </style>

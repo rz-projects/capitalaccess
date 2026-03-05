@@ -27,6 +27,28 @@
   --color-error: #C41E3A;
   --color-info: #1B365D;
   
+  --text-primary: #2C2C2C;
+  --text-secondary: #3D3D3D;
+  --text-tertiary: #525252;
+  --text-muted: #6B6B6B;
+  --text-on-dark: #FFFFFF;
+  --text-on-dark-muted: rgba(255, 255, 255, 0.8);
+  --text-accent: #B8860B;
+  --text-link: #1B365D;
+  --text-link-hover: #2D5A3D;
+  
+  --bg-primary: #FAF8F5;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F5F2ED;
+  --bg-dark: #1B365D;
+  --bg-dark-secondary: #122640;
+  --bg-accent: #2D5A3D;
+  --bg-highlight: #B8860B;
+  
+  --border-light: #EBE6DE;
+  --border-default: #D4CFC5;
+  --border-dark: #6B6B6B;
+  
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   

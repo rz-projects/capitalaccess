@@ -33,20 +33,21 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-primary);
 }
 
-h1 {
-  font-size: var(--font-size-5xl);
+h1, .h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
 }
 
-h2 {
-  font-size: var(--font-size-4xl);
+h2, .h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
-h3 {
-  font-size: var(--font-size-3xl);
+h3, .h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
-h4 {
-  font-size: var(--font-size-2xl);
+h4, .h4 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
 }
 
 h5 {
@@ -55,6 +56,29 @@ h5 {
 
 h6 {
   font-size: var(--font-size-lg);
+}
+
+.body-lg {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.body-md {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.body-sm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.overline {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
 }
 
 p {
