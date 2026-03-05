@@ -1,0 +1,1122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+
+const colors = {
+  primary: [
+    { name: 'Primary', var: '--color-primary', hex: '#1B365D', usage: 'Main brand color, buttons, headings' },
+    { name: 'Primary Light', var: '--color-primary-light', hex: '#2A4A7A', usage: 'Hover states, lighter backgrounds' },
+    { name: 'Primary Dark', var: '--color-primary-dark', hex: '#122640', usage: 'Active states, darker accents' },
+  ],
+  secondary: [
+    { name: 'Secondary', var: '--color-secondary', hex: '#B8860B', usage: 'CTAs, highlights, accents' },
+    { name: 'Secondary Light', var: '--color-secondary-light', hex: '#D4A017', usage: 'Hover states' },
+    { name: 'Secondary Dark', var: '--color-secondary-dark', hex: '#9A7209', usage: 'Active states' },
+  ],
+  accent: [
+    { name: 'Accent', var: '--color-accent', hex: '#2D5A3D', usage: 'Success states, secondary actions' },
+    { name: 'Accent Light', var: '--color-accent-light', hex: '#3D7A52', usage: 'Hover states' },
+    { name: 'Accent Dark', var: '--color-accent-dark', hex: '#1E4A2E', usage: 'Active states' },
+  ],
+  neutral: [
+    { name: 'Neutral 50', var: '--color-neutral-50', hex: '#FAF8F5', usage: 'Background, cards' },
+    { name: 'Neutral 100', var: '--color-neutral-100', hex: '#F5F2ED', usage: 'Subtle backgrounds' },
+    { name: 'Neutral 200', var: '--color-neutral-200', hex: '#EBE6DE', usage: 'Borders, dividers' },
+    { name: 'Neutral 300', var: '--color-neutral-300', hex: '#D4CFC5', usage: 'Disabled borders' },
+    { name: 'Neutral 400', var: '--color-neutral-400', hex: '#A8A29E', usage: 'Placeholder text' },
+    { name: 'Neutral 500', var: '--color-neutral-500', hex: '#6B6B6B', usage: 'Secondary text' },
+    { name: 'Neutral 600', var: '--color-neutral-600', hex: '#525252', usage: 'Body text' },
+    { name: 'Neutral 700', var: '--color-neutral-700', hex: '#3D3D3D', usage: 'Headings' },
+    { name: 'Neutral 800', var: '--color-neutral-800', hex: '#2C2C2C', usage: 'Primary text' },
+    { name: 'Neutral 900', var: '--color-neutral-900', hex: '#1A1A1A', usage: 'High contrast text' },
+  ],
+  semantic: [
+    { name: 'Success', var: '--color-success', hex: '#2D5A3D', usage: 'Success messages, positive states' },
+    { name: 'Warning', var: '--color-warning', hex: '#B8860B', usage: 'Warning messages, caution states' },
+    { name: 'Error', var: '--color-error', hex: '#C41E3A', usage: 'Error messages, destructive actions' },
+    { name: 'Info', var: '--color-info', hex: '#1B365D', usage: 'Information messages' },
+  ],
+};
+
+const typography = {
+  headings: [
+    { name: 'Heading 1', tag: 'h1', size: '3rem (48px)', weight: '700', lineHeight: '1.25', usage: 'Page titles, hero headlines' },
+    { name: 'Heading 2', tag: 'h2', size: '2.25rem (36px)', weight: '700', lineHeight: '1.25', usage: 'Section titles' },
+    { name: 'Heading 3', tag: 'h3', size: '1.875rem (30px)', weight: '700', lineHeight: '1.25', usage: 'Subsection titles' },
+    { name: 'Heading 4', tag: 'h4', size: '1.5rem (24px)', weight: '700', lineHeight: '1.25', usage: 'Card titles, small sections' },
+    { name: 'Heading 5', tag: 'h5', size: '1.25rem (20px)', weight: '700', lineHeight: '1.25', usage: 'Small headings' },
+    { name: 'Heading 6', tag: 'h6', size: '1.125rem (18px)', weight: '700', lineHeight: '1.25', usage: 'Smallest headings' },
+  ],
+  body: [
+    { name: 'Body Large', size: '1.125rem (18px)', weight: '400', lineHeight: '1.625', usage: 'Lead paragraphs, intros' },
+    { name: 'Body', size: '1rem (16px)', weight: '400', lineHeight: '1.5', usage: 'Default body text' },
+    { name: 'Body Small', size: '0.875rem (14px)', weight: '400', lineHeight: '1.5', usage: 'Captions, metadata' },
+    { name: 'Body XSmall', size: '0.75rem (12px)', weight: '400', lineHeight: '1.5', usage: 'Fine print, labels' },
+  ],
+};
+
+const spacing = [
+  { name: 'spacing-1', value: '0.25rem', px: '4px', usage: 'Tight spacing, icon gaps' },
+  { name: 'spacing-2', value: '0.5rem', px: '8px', usage: 'Small gaps, button padding' },
+  { name: 'spacing-3', value: '0.75rem', px: '12px', usage: 'Medium gaps' },
+  { name: 'spacing-4', value: '1rem', px: '16px', usage: 'Default gap, card padding' },
+  { name: 'spacing-5', value: '1.25rem', px: '20px', usage: 'Medium-large gaps' },
+  { name: 'spacing-6', value: '1.5rem', px: '24px', usage: 'Section gaps' },
+  { name: 'spacing-8', value: '2rem', px: '32px', usage: 'Large gaps' },
+  { name: 'spacing-10', value: '2.5rem', px: '40px', usage: 'XL gaps' },
+  { name: 'spacing-12', value: '3rem', px: '48px', usage: 'Section padding' },
+  { name: 'spacing-16', value: '4rem', px: '64px', usage: 'Large section padding' },
+  { name: 'spacing-20', value: '5rem', px: '80px', usage: 'XL section padding' },
+  { name: 'spacing-24', value: '6rem', px: '96px', usage: 'Hero padding' },
+  { name: 'spacing-32', value: '8rem', px: '128px', usage: 'Maximum spacing' },
+];
+
+const radii = [
+  { name: 'radius-sm', value: '2px', usage: 'Small elements, tags' },
+  { name: 'radius-md', value: '4px', usage: 'Buttons, inputs, cards' },
+  { name: 'radius-lg', value: '6px', usage: 'Larger cards, modals' },
+  { name: 'radius-xl', value: '8px', usage: 'Large containers' },
+  { name: 'radius-full', value: '9999px', usage: 'Pills, avatars' },
+];
+
+const shadows = [
+  { name: 'shadow-sm', value: '0 1px 2px rgba(27, 54, 93, 0.05)', usage: 'Subtle elevation' },
+  { name: 'shadow-md', value: '0 2px 4px rgba(27, 54, 93, 0.08)', usage: 'Cards, dropdowns' },
+  { name: 'shadow-lg', value: '0 4px 8px rgba(27, 54, 93, 0.1)', usage: 'Hover states, popovers' },
+  { name: 'shadow-xl', value: '0 8px 16px rgba(27, 54, 93, 0.12)', usage: 'Modals, floating elements' },
+];
+
+const breakpoints = [
+  { name: 'sm', value: '640px', usage: 'Small devices, phones landscape' },
+  { name: 'md', value: '768px', usage: 'Tablets, small laptops' },
+  { name: 'lg', value: '1024px', usage: 'Laptops, desktops' },
+  { name: 'xl', value: '1280px', usage: 'Large desktops' },
+  { name: '2xl', value: '1536px', usage: 'Extra large screens' },
+];
+---
+
+<BaseLayout title="Design System">
+  <Header />
+  
+  <main class="design-system">
+    <div class="container">
+      <header class="ds-header">
+        <h1>Design System</h1>
+        <p class="lead">Heritage Trust — A classic financial authority design system built for trust, stability, and tradition.</p>
+      </header>
+
+      <nav class="ds-nav">
+        <a href="#colors">Colors</a>
+        <a href="#typography">Typography</a>
+        <a href="#spacing">Spacing</a>
+        <a href="#components">Components</a>
+        <a href="#patterns">Patterns</a>
+      </nav>
+
+      <section id="colors" class="ds-section">
+        <h2>Colors</h2>
+        
+        <div class="color-category">
+          <h3>Primary</h3>
+          <div class="color-grid">
+            {colors.primary.map(color => (
+              <div class="color-card">
+                <div class="color-swatch" style={`background: ${color.hex}`}></div>
+                <div class="color-info">
+                  <span class="color-name">{color.name}</span>
+                  <span class="color-var">{color.var}</span>
+                  <span class="color-hex">{color.hex}</span>
+                  <span class="color-usage">{color.usage}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="color-category">
+          <h3>Secondary</h3>
+          <div class="color-grid">
+            {colors.secondary.map(color => (
+              <div class="color-card">
+                <div class="color-swatch" style={`background: ${color.hex}`}></div>
+                <div class="color-info">
+                  <span class="color-name">{color.name}</span>
+                  <span class="color-var">{color.var}</span>
+                  <span class="color-hex">{color.hex}</span>
+                  <span class="color-usage">{color.usage}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="color-category">
+          <h3>Accent</h3>
+          <div class="color-grid">
+            {colors.accent.map(color => (
+              <div class="color-card">
+                <div class="color-swatch" style={`background: ${color.hex}`}></div>
+                <div class="color-info">
+                  <span class="color-name">{color.name}</span>
+                  <span class="color-var">{color.var}</span>
+                  <span class="color-hex">{color.hex}</span>
+                  <span class="color-usage">{color.usage}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="color-category">
+          <h3>Neutral</h3>
+          <div class="color-grid color-grid-neutral">
+            {colors.neutral.map(color => (
+              <div class="color-card color-card-neutral">
+                <div class="color-swatch" style={`background: ${color.hex}; border: 1px solid #ddd`}></div>
+                <div class="color-info">
+                  <span class="color-name">{color.name}</span>
+                  <span class="color-hex">{color.hex}</span>
+                  <span class="color-usage">{color.usage}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="color-category">
+          <h3>Semantic</h3>
+          <div class="color-grid">
+            {colors.semantic.map(color => (
+              <div class="color-card">
+                <div class="color-swatch" style={`background: ${color.hex}`}></div>
+                <div class="color-info">
+                  <span class="color-name">{color.name}</span>
+                  <span class="color-var">{color.var}</span>
+                  <span class="color-hex">{color.hex}</span>
+                  <span class="color-usage">{color.usage}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="typography" class="ds-section">
+        <h2>Typography</h2>
+        
+        <div class="typography-category">
+          <h3>Font Families</h3>
+          <div class="font-families">
+            <div class="font-family">
+              <span class="font-label">Headings</span>
+              <span class="font-name" style="font-family: var(--font-heading)">Playfair Display</span>
+              <span class="font-type">Serif — Authoritative, classic</span>
+            </div>
+            <div class="font-family">
+              <span class="font-label">Body</span>
+              <span class="font-name" style="font-family: var(--font-body)">Source Sans Pro</span>
+              <span class="font-type">Sans-serif — Clean, readable</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="typography-category">
+          <h3>Headings</h3>
+          <div class="type-scale">
+            {typography.headings.map(type => (
+              <div class="type-sample">
+                <div class="type-preview">
+                  <p class={`type-${type.tag}`}>Heading Text</p>
+                </div>
+                <div class="type-meta">
+                  <span class="type-name">{type.name}</span>
+                  <span class="type-tag">&lt;{type.tag}&gt;</span>
+                  <span class="type-size">{type.size}</span>
+                  <span class="type-weight">Weight: {type.weight}</span>
+                  <span class="type-line">Line: {type.lineHeight}</span>
+                  <span class="type-usage">{type.usage}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="typography-category">
+          <h3>Body Text</h3>
+          <div class="type-scale">
+            {typography.body.map(type => (
+              <div class="type-sample type-sample-body">
+                <div class="type-preview">
+                  <p style={`font-size: ${type.size}; line-height: ${type.lineHeight}`}>
+                    Body text sample. The quick brown fox jumps over the lazy dog. This demonstrates readability at this size.
+                  </p>
+                </div>
+                <div class="type-meta">
+                  <span class="type-name">{type.name}</span>
+                  <span class="type-size">{type.size}</span>
+                  <span class="type-weight">Weight: {type.weight}</span>
+                  <span class="type-line">Line: {type.lineHeight}</span>
+                  <span class="type-usage">{type.usage}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="spacing" class="ds-section">
+        <h2>Spacing</h2>
+        
+        <div class="spacing-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Value</th>
+                <th>Pixels</th>
+                <th>Visual</th>
+                <th>Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              {spacing.map(space => (
+                <tr>
+                  <td><code>{space.name}</code></td>
+                  <td>{space.value}</td>
+                  <td>{space.px}</td>
+                  <td><div class="spacing-visual" style={`width: ${space.px}`}></div></td>
+                  <td>{space.usage}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tokens-grid">
+          <div class="token-group">
+            <h3>Border Radius</h3>
+            <div class="radius-samples">
+              {radii.map(r => (
+                <div class="radius-sample">
+                  <div class="radius-box" style={`border-radius: ${r.value}`}></div>
+                  <span class="radius-name">{r.name}</span>
+                  <span class="radius-value">{r.value}</span>
+                  <span class="radius-usage">{r.usage}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="token-group">
+            <h3>Shadows</h3>
+            <div class="shadow-samples">
+              {shadows.map(s => (
+                <div class="shadow-sample">
+                  <div class="shadow-box" style={`box-shadow: ${s.value}`}></div>
+                  <span class="shadow-name">{s.name}</span>
+                  <span class="shadow-usage">{s.usage}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="token-group">
+            <h3>Breakpoints</h3>
+            <div class="breakpoint-list">
+              {breakpoints.map(bp => (
+                <div class="breakpoint-item">
+                  <span class="bp-name">{bp.name}</span>
+                  <span class="bp-value">{bp.value}</span>
+                  <span class="bp-usage">{bp.usage}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="components" class="ds-section">
+        <h2>Components</h2>
+
+        <div class="component-category">
+          <h3>Button</h3>
+          <p class="component-desc">Buttons trigger actions and should be used for primary, secondary, and tertiary actions.</p>
+          
+          <div class="component-variants">
+            <div class="variant">
+              <h4>Variants</h4>
+              <div class="variant-samples">
+                <Button variant="primary">Primary</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="accent">Accent</Button>
+              </div>
+            </div>
+
+            <div class="variant">
+              <h4>Sizes</h4>
+              <div class="variant-samples">
+                <Button size="sm">Small</Button>
+                <Button size="md">Medium</Button>
+                <Button size="lg">Large</Button>
+              </div>
+            </div>
+
+            <div class="variant">
+              <h4>States</h4>
+              <div class="variant-samples">
+                <Button>Normal</Button>
+                <Button disabled>Disabled</Button>
+              </div>
+            </div>
+
+            <div class="variant">
+              <h4>As Link</h4>
+              <div class="variant-samples">
+                <Button href="#" variant="primary">Link Button</Button>
+                <Button href="#" variant="outline">Outline Link</Button>
+              </div>
+            </div>
+          </div>
+
+          <div class="component-usage">
+            <h4>Usage Guidelines</h4>
+            <ul>
+              <li><strong>Primary:</strong> Main CTAs, form submissions, primary actions</li>
+              <li><strong>Secondary:</strong> Secondary actions, alternative CTAs</li>
+              <li><strong>Outline:</strong> Tertiary actions, cancel buttons, less prominent options</li>
+              <li><strong>Accent:</strong> Success actions, positive confirmations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="component-category">
+          <h3>Card</h3>
+          <p class="component-desc">Cards group related content and actions in a contained unit.</p>
+          
+          <div class="component-variants">
+            <div class="variant">
+              <h4>Basic Card</h4>
+              <div class="variant-samples cards-row">
+                <Card
+                  title="Financial Planning"
+                  description="Comprehensive strategies tailored to your unique financial goals."
+                  tag="Planning"
+                />
+              </div>
+            </div>
+
+            <div class="variant">
+              <h4>Card with Link</h4>
+              <div class="variant-samples cards-row">
+                <Card
+                  title="Investment Services"
+                  description="Expert guidance on building and managing your investment portfolio."
+                  href="/services/investment"
+                  tag="Investment"
+                />
+              </div>
+            </div>
+
+            <div class="variant">
+              <h4>Card with Image</h4>
+              <div class="variant-samples cards-row">
+                <Card
+                  title="Wealth Management"
+                  description="Personalized wealth management solutions for high-net-worth individuals."
+                  href="/services/wealth"
+                  tag="Wealth"
+                  image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=225&fit=crop"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="component-usage">
+            <h4>Usage Guidelines</h4>
+            <ul>
+              <li>Use for service offerings, blog posts, team members, testimonials</li>
+              <li>Keep descriptions concise (1-2 sentences)</li>
+              <li>Include clear CTAs when cards are actionable</li>
+              <li>Use tags to categorize content</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="component-category">
+          <h3>Form Elements</h3>
+          <p class="component-desc">Form elements for collecting user input.</p>
+          
+          <div class="component-variants">
+            <div class="variant">
+              <h4>Text Input</h4>
+              <div class="form-demo">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" placeholder="Enter your name" />
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" placeholder="Enter your email" />
+                </div>
+              </div>
+            </div>
+
+            <div class="variant">
+              <h4>Textarea</h4>
+              <div class="form-demo">
+                <div class="form-group">
+                  <label>Message</label>
+                  <textarea placeholder="Enter your message"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="variant">
+              <h4>Select</h4>
+              <div class="form-demo">
+                <div class="form-group">
+                  <label>Service Interest</label>
+                  <select>
+                    <option>Select a service</option>
+                    <option>Financial Planning</option>
+                    <option>Investment Services</option>
+                    <option>Wealth Management</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="patterns" class="ds-section">
+        <h2>Patterns</h2>
+
+        <div class="pattern-category">
+          <h3>Page Layout</h3>
+          <div class="pattern-demo">
+            <div class="layout-visual">
+              <div class="layout-header">Header (Sticky)</div>
+              <div class="layout-hero">Hero Section</div>
+              <div class="layout-content">
+                <div class="layout-main">Main Content</div>
+                <div class="layout-sidebar">Sidebar (Optional)</div>
+              </div>
+              <div class="layout-footer">Footer</div>
+            </div>
+          </div>
+          <div class="pattern-usage">
+            <h4>Structure</h4>
+            <ul>
+              <li><strong>Header:</strong> Fixed/sticky navigation, 80px height</li>
+              <li><strong>Hero:</strong> Full-width, centered content, max 700px text</li>
+              <li><strong>Content:</strong> Container max-width 1280px, responsive padding</li>
+              <li><strong>Footer:</strong> Dark background, 4-column grid</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pattern-category">
+          <h3>Content Spacing</h3>
+          <div class="pattern-usage">
+            <h4>Section Spacing</h4>
+            <ul>
+              <li><strong>Hero sections:</strong> padding: 80px 0 (mobile), 128px 0 (desktop)</li>
+              <li><strong>Content sections:</strong> padding: 64px 0</li>
+              <li><strong>Small sections:</strong> padding: 48px 0</li>
+              <li><strong>Section gaps:</strong> margin-bottom: 48px between major sections</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pattern-category">
+          <h3>Responsive Grid</h3>
+          <div class="pattern-usage">
+            <h4>Grid System</h4>
+            <ul>
+              <li><strong>Mobile:</strong> 1 column, full width</li>
+              <li><strong>Tablet (768px+):</strong> 2 columns</li>
+              <li><strong>Desktop (1024px+):</strong> 3 columns</li>
+              <li><strong>Large (1280px+):</strong> 4 columns</li>
+              <li><strong>Gap:</strong> 32px between cards</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .design-system {
+    padding: var(--spacing-16) 0;
+  }
+
+  .ds-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+
+  .ds-header h1 {
+    margin-bottom: var(--spacing-4);
+  }
+
+  .lead {
+    font-size: var(--font-size-xl);
+    color: var(--color-neutral-500);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ds-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    justify-content: center;
+    padding: var(--spacing-6);
+    background: var(--color-neutral-100);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-12);
+  }
+
+  .ds-nav a {
+    padding: var(--spacing-2) var(--spacing-4);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-neutral-600);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+  }
+
+  .ds-nav a:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .ds-section {
+    margin-bottom: var(--spacing-16);
+    padding-bottom: var(--spacing-16);
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .ds-section:last-child {
+    border-bottom: none;
+  }
+
+  .ds-section h2 {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .ds-section h3 {
+    margin-bottom: var(--spacing-4);
+    font-size: var(--font-size-xl);
+  }
+
+  /* Colors */
+  .color-category {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-4);
+  }
+
+  .color-grid-neutral {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .color-card {
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .color-swatch {
+    height: 80px;
+  }
+
+  .color-info {
+    padding: var(--spacing-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+  }
+
+  .color-name {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+  }
+
+  .color-var {
+    font-family: monospace;
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-500);
+  }
+
+  .color-hex {
+    font-family: monospace;
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-400);
+  }
+
+  .color-usage {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-500);
+  }
+
+  /* Typography */
+  .typography-category {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .font-families {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-4);
+  }
+
+  .font-family {
+    padding: var(--spacing-6);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .font-label {
+    display: block;
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-neutral-500);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .font-name {
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-1);
+  }
+
+  .font-type {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-500);
+  }
+
+  .type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .type-sample {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    align-items: center;
+  }
+
+  .type-preview {
+    padding: var(--spacing-4);
+  }
+
+  .type-h1, .type-h2, .type-h3, .type-h4, .type-h5, .type-h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .type-h1 { font-size: var(--font-size-5xl); }
+  .type-h2 { font-size: var(--font-size-4xl); }
+  .type-h3 { font-size: var(--font-size-3xl); }
+  .type-h4 { font-size: var(--font-size-2xl); }
+  .type-h5 { font-size: var(--font-size-xl); }
+  .type-h6 { font-size: var(--font-size-lg); }
+
+  .type-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    font-size: var(--font-size-xs);
+  }
+
+  .type-name {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+  }
+
+  .type-tag {
+    font-family: monospace;
+    color: var(--color-secondary);
+  }
+
+  .type-size, .type-weight, .type-line {
+    color: var(--color-neutral-500);
+  }
+
+  .type-usage {
+    color: var(--color-neutral-400);
+    font-style: italic;
+  }
+
+  /* Spacing */
+  .spacing-table {
+    overflow-x: auto;
+    margin-bottom: var(--spacing-8);
+  }
+
+  .spacing-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .spacing-table th,
+  .spacing-table td {
+    padding: var(--spacing-3) var(--spacing-4);
+    text-align: left;
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .spacing-table th {
+    background: var(--color-neutral-100);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+  }
+
+  .spacing-table code {
+    font-family: monospace;
+    background: var(--color-neutral-100);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+  }
+
+  .spacing-visual {
+    height: 8px;
+    background: var(--color-secondary);
+    border-radius: var(--radius-full);
+  }
+
+  .tokens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-6);
+  }
+
+  .token-group {
+    padding: var(--spacing-6);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .radius-samples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+  }
+
+  .radius-sample {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+
+  .radius-box {
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
+  }
+
+  .radius-name, .radius-value {
+    font-size: var(--font-size-xs);
+    font-family: monospace;
+  }
+
+  .radius-usage {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-500);
+  }
+
+  .shadow-samples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+  }
+
+  .shadow-sample {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+
+  .shadow-box {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: var(--radius-md);
+  }
+
+  .shadow-name {
+    font-size: var(--font-size-xs);
+    font-family: monospace;
+  }
+
+  .shadow-usage {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-500);
+  }
+
+  .breakpoint-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .breakpoint-item {
+    display: flex;
+    gap: var(--spacing-4);
+    align-items: center;
+  }
+
+  .bp-name {
+    font-weight: var(--font-weight-medium);
+    font-family: monospace;
+    min-width: 40px;
+  }
+
+  .bp-value {
+    font-family: monospace;
+    color: var(--color-secondary);
+    min-width: 60px;
+  }
+
+  .bp-usage {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-500);
+  }
+
+  /* Components */
+  .component-category {
+    margin-bottom: var(--spacing-12);
+    padding: var(--spacing-6);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .component-category h3 {
+    margin-bottom: var(--spacing-2);
+  }
+
+  .component-desc {
+    color: var(--color-neutral-500);
+    margin-bottom: var(--spacing-6);
+  }
+
+  .component-variants {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-6);
+  }
+
+  .variant h4 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-3);
+    color: var(--color-neutral-700);
+  }
+
+  .variant-samples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    align-items: center;
+  }
+
+  .cards-row {
+    max-width: 400px;
+  }
+
+  .component-usage {
+    padding: var(--spacing-4);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .component-usage h4 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-3);
+    color: var(--color-neutral-700);
+  }
+
+  .component-usage ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .component-usage li {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-600);
+  }
+
+  /* Form Demo */
+  .form-demo {
+    max-width: 400px;
+  }
+
+  .form-group {
+    margin-bottom: var(--spacing-4);
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-2);
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: var(--spacing-3);
+    border: none;
+    border-bottom: 2px solid var(--color-neutral-300);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-bottom-color: var(--color-secondary);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  /* Patterns */
+  .pattern-category {
+    margin-bottom: var(--spacing-8);
+    padding: var(--spacing-6);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pattern-demo {
+    margin-bottom: var(--spacing-6);
+  }
+
+  .layout-visual {
+    border: 2px dashed var(--color-neutral-300);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .layout-header,
+  .layout-hero,
+  .layout-main,
+  .layout-sidebar,
+  .layout-footer {
+    padding: var(--spacing-4);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .layout-header {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .layout-hero {
+    background: var(--color-neutral-100);
+    border-bottom: 1px dashed var(--color-neutral-300);
+  }
+
+  .layout-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border-bottom: 1px dashed var(--color-neutral-300);
+  }
+
+  .layout-main {
+    background: white;
+    border-right: 1px dashed var(--color-neutral-300);
+  }
+
+  .layout-sidebar {
+    background: var(--color-neutral-50);
+  }
+
+  .layout-footer {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .pattern-usage h4 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-3);
+    color: var(--color-neutral-700);
+  }
+
+  .pattern-usage ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .pattern-usage li {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-600);
+  }
+
+  @media (max-width: 768px) {
+    .type-sample {
+      grid-template-columns: 1fr;
+    }
+
+    .type-meta {
+      padding-top: var(--spacing-4);
+      border-top: 1px solid var(--color-neutral-200);
+    }
+
+    .layout-content {
+      grid-template-columns: 1fr;
+    }
+
+    .layout-sidebar {
+      border-top: 1px dashed var(--color-neutral-300);
+    }
+  }
+</style>

@@ -1,0 +1,29 @@
+{
+  "name": "capitalaccess",
+  "version": "1.0.0",
+  "description": "CapitalAccess.org website repo",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "typecheck": "astro check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rz-projects/capitalaccess.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rz-projects/capitalaccess/issues"
+  },
+  "homepage": "https://github.com/rz-projects/capitalaccess#readme",
+  "dependencies": {
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.18.0",
+    "typescript": "^5.9.3"
+  }
+}

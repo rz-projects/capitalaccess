@@ -1,0 +1,162 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  services: [
+    { href: '/services/financial-planning', label: 'Financial Planning' },
+    { href: '/services/investment', label: 'Investment Services' },
+    { href: '/services/wealth-management', label: 'Wealth Management' },
+  ],
+  company: [
+    { href: '/about', label: 'About Us' },
+    { href: '/team', label: 'Our Team' },
+    { href: '/careers', label: 'Careers' },
+  ],
+  resources: [
+    { href: '/insights', label: 'Insights' },
+    { href: '/research', label: 'Research' },
+    { href: '/customer-stories', label: 'Customer Stories' },
+  ],
+};
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Capital Access</a>
+        <p class="tagline">Your trusted partner for financial clarity and wealth building.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          {footerLinks.services.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          {footerLinks.company.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          {footerLinks.resources.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} Capital Access. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--spacing-16) 0 var(--spacing-8);
+    margin-top: var(--spacing-16);
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-12);
+  }
+  
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+  
+  .footer-brand .logo {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: white;
+    display: inline-block;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .tagline {
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 300px;
+  }
+  
+  .footer-links h4 {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .footer-links ul {
+    list-style: none;
+  }
+  
+  .footer-links li {
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+  
+  .footer-links a:hover {
+    color: white;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    padding-top: var(--spacing-8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  .footer-legal {
+    display: flex;
+    gap: var(--spacing-6);
+  }
+  
+  .footer-legal a {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .footer-legal a:hover {
+    color: white;
+  }
+</style>

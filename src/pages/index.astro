@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+
+const heroTitle = 'Your Path to Financial Clarity';
+const heroDescription = 'Trusted guidance for individuals and businesses seeking to build lasting wealth and financial security.';
+
+const services = [
+  {
+    title: 'Financial Planning',
+    description: 'Comprehensive strategies tailored to your unique financial goals and circumstances.',
+    href: '/services/financial-planning',
+    tag: 'Planning',
+  },
+  {
+    title: 'Investment Services',
+    description: 'Expert guidance on building and managing your investment portfolio for long-term growth.',
+    href: '/services/investment',
+    tag: 'Investment',
+  },
+  {
+    title: 'Wealth Management',
+    description: 'Personalized wealth management solutions for high-net-worth individuals and families.',
+    href: '/services/wealth-management',
+    tag: 'Wealth',
+  },
+];
+
+const stats = [
+  { value: '20+', label: 'Years of Experience' },
+  { value: '5,000+', label: 'Clients Served' },
+  { value: '$2B+', label: 'Assets Under Advisory' },
+  { value: '98%', label: 'Client Satisfaction' },
+];
+---
+
+<BaseLayout title="Home">
+  <Header />
+  
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>{heroTitle}</h1>
+          <p class="hero-description">{heroDescription}</p>
+          <div class="hero-actions">
+            <Button href="/contact" size="lg">Get Started</Button>
+            <Button variant="outline" href="/services" size="lg">Our Services</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          {stats.map(stat => (
+            <div class="stat">
+              <span class="stat-value">{stat.value}</span>
+              <span class="stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Services</h2>
+          <p>Comprehensive financial solutions designed to help you achieve your goals.</p>
+        </div>
+        <div class="services-grid">
+          {services.map(service => (
+            <Card
+              title={service.title}
+              description={service.description}
+              href={service.href}
+              tag={service.tag}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Start Your Journey?</h2>
+          <p>Schedule a consultation with one of our financial advisors today.</p>
+          <Button href="/contact" variant="secondary" size="lg">Schedule Consultation</Button>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: var(--spacing-20) 0;
+    background: linear-gradient(135deg, var(--color-neutral-50) 0%, white 100%);
+  }
+  
+  @media (min-width: 768px) {
+    .hero {
+      padding: var(--spacing-32) 0;
+    }
+  }
+  
+  .hero-content {
+    max-width: 700px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .hero h1 {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-6);
+  }
+  
+  @media (min-width: 768px) {
+    .hero h1 {
+      font-size: var(--font-size-6xl);
+    }
+  }
+  
+  .hero-description {
+    font-size: var(--font-size-xl);
+    color: var(--color-neutral-500);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    justify-content: center;
+  }
+  
+  .stats {
+    padding: var(--spacing-12) 0;
+    background: var(--color-primary);
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-8);
+  }
+  
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .stat {
+    text-align: center;
+    color: white;
+  }
+  
+  .stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .stat-label {
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .services {
+    padding: var(--spacing-16) 0;
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-12);
+  }
+  
+  .section-header h2 {
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .section-header p {
+    color: var(--color-neutral-500);
+    font-size: var(--font-size-lg);
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+  
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .cta {
+    padding: var(--spacing-16) 0;
+    background: var(--color-neutral-100);
+  }
+  
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .cta h2 {
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .cta p {
+    color: var(--color-neutral-500);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-8);
+  }
+</style>
