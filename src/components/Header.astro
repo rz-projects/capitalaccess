@@ -1,9 +1,36 @@
 ---
-const navLinks = [
+const navItems = [
   { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/insights', label: 'Insights' },
-  { href: '/about', label: 'About' },
+  {
+    label: 'Financing',
+    children: [
+      { href: '/evergreen/edu-hard-money-loans-overview', label: 'What Is Hard Money?' },
+      { href: '/evergreen/edu-hard-money-lenders', label: 'Hard Money Lenders' },
+      { href: '/evergreen/edu-how-to-get-hard-money-loan', label: 'How to Get a Hard Money Loan' },
+      { href: '/evergreen/edu-hard-money-loan-uses', label: 'Hard Money Loan Uses' },
+      { href: '/evergreen/edu-hard-money-vs-private-lending', label: 'Hard Money vs Private Lending' },
+      { href: '/evergreen/edu-fix-flip-loans', label: 'Fix and Flip Loans' },
+      { href: '/evergreen/edu-bridge-loans', label: 'Bridge Loans' },
+      { href: '/evergreen/edu-commercial-bridge-loan', label: 'Commercial Bridge Loans' },
+      { href: '/evergreen/edu-cash-out-refinance', label: 'Cash Out Refinance' },
+      { href: '/evergreen/edu-subprime-lending', label: 'Subprime Lending' },
+    ]
+  },
+  {
+    label: 'Investing',
+    children: [
+      { href: '/evergreen/edu-real-estate-vs-stock-market', label: 'Real Estate vs Stock Market' },
+    ]
+  },
+  {
+    label: 'Business',
+    children: [
+      { href: '/evergreen/edu-private-money-lending-smb', label: 'Private Lending for SMBs' },
+      { href: '/evergreen/edu-starting-small-business', label: 'Starting a Business' },
+      { href: '/evergreen/edu-buying-small-business', label: 'Buying a Business' },
+    ]
+  },
+  { href: '/services/', label: 'Guides' },
   { href: '/contact', label: 'Contact' },
 ];
 ---
@@ -20,9 +47,27 @@ const navLinks = [
     </button>
     
     <ul class="nav-links">
-      {navLinks.map(link => (
-        <li>
-          <a href={link.href} class="nav-link">{link.label}</a>
+      {navItems.map(item => (
+        <li class={item.children ? 'has-dropdown' : ''}>
+          {item.children ? (
+            <>
+              <button class="nav-link dropdown-trigger" aria-expanded="false">
+                {item.label}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+              <ul class="dropdown-menu">
+                {item.children.map(child => (
+                  <li>
+                    <a href={child.href}>{child.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <a href={item.href} class="nav-link">{item.label}</a>
+          )}
         </li>
       ))}
     </ul>
@@ -83,7 +128,7 @@ const navLinks = [
   .nav-links {
     display: none;
     list-style: none;
-    gap: var(--spacing-8);
+    gap: var(--spacing-6);
   }
   
   @media (min-width: 768px) {
@@ -92,12 +137,23 @@ const navLinks = [
     }
   }
   
+  .nav-links > li {
+    position: relative;
+  }
+  
   .nav-link {
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium);
     color: white;
     padding: var(--spacing-2) 0;
     position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: inherit;
   }
   
   .nav-link::after {
@@ -117,6 +173,58 @@ const navLinks = [
   
   .nav-link:hover::after {
     width: 100%;
+  }
+  
+  .dropdown-trigger svg {
+    transition: transform 0.2s ease;
+  }
+  
+  .has-dropdown:hover .dropdown-trigger svg,
+  .dropdown-trigger[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(27, 54, 93, 0.15);
+    min-width: 280px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    list-style: none;
+    z-index: 100;
+  }
+  
+  .has-dropdown:hover .dropdown-menu,
+  .dropdown-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown-menu li {
+    margin: 0;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: var(--color-primary);
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .dropdown-menu a:hover {
+    background: var(--bg-tertiary);
+    color: var(--color-secondary);
+    padding-left: 1.5rem;
   }
   
   .mobile-menu-toggle {
@@ -173,23 +281,86 @@ const navLinks = [
     right: 0;
     background: var(--color-primary);
     padding: var(--spacing-6);
-    gap: var(--spacing-4);
+    gap: 0;
     box-shadow: var(--shadow-lg);
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .nav-links.is-open > li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-links.is-open > li:last-child {
+    border-bottom: none;
   }
   
   .nav-links.is-open .nav-link {
     font-size: var(--font-size-lg);
-    padding: var(--spacing-3) 0;
+    padding: var(--spacing-4) 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .nav-links.is-open .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0;
+    padding: 0;
+    display: none;
+  }
+  
+  .nav-links.is-open .dropdown-menu.is-open {
+    display: block;
+  }
+  
+  .nav-links.is-open .dropdown-menu a {
+    color: rgba(255, 255, 255, 0.9);
+    padding: var(--spacing-3) var(--spacing-6);
+    font-size: var(--font-size-base);
+  }
+  
+  .nav-links.is-open .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-secondary);
+    padding-left: var(--spacing-8);
   }
 </style>
 
 <script>
   const toggle = document.querySelector('.mobile-menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
   
   toggle?.addEventListener('click', () => {
     const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', (!isExpanded).toString());
     navLinks?.classList.toggle('is-open');
+  });
+  
+  dropdownTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        e.preventDefault();
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', (!isExpanded).toString());
+        const dropdown = trigger.nextElementSibling;
+        dropdown?.classList.toggle('is-open');
+      }
+    });
+  });
+  
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.has-dropdown')) {
+      dropdownTriggers.forEach(trigger => {
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
   });
 </script>

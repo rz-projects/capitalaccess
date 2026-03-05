@@ -2,20 +2,27 @@
 const currentYear = new Date().getFullYear();
 
 const footerLinks = {
-  services: [
-    { href: '/services/financial-planning', label: 'Financial Planning' },
-    { href: '/services/investment', label: 'Investment Services' },
-    { href: '/services/wealth-management', label: 'Wealth Management' },
+  financing: [
+    { href: '/evergreen/edu-hard-money-loans-overview', label: 'What Is Hard Money?' },
+    { href: '/evergreen/edu-hard-money-lenders', label: 'Hard Money Lenders' },
+    { href: '/evergreen/edu-bridge-loans', label: 'Bridge Loans' },
+    { href: '/evergreen/edu-cash-out-refinance', label: 'Cash Out Refinance' },
+    { href: '/evergreen/edu-fix-flip-loans', label: 'Fix and Flip Loans' },
+  ],
+  investing: [
+    { href: '/evergreen/edu-real-estate-vs-stock-market', label: 'Real Estate vs Stocks' },
+  ],
+  guides: [
+    { href: '/services/guide-real-estate-beginners', label: 'Real Estate Investing Guide' },
+  ],
+  business: [
+    { href: '/evergreen/edu-starting-small-business', label: 'Starting a Business' },
+    { href: '/evergreen/edu-buying-small-business', label: 'Buying a Business' },
+    { href: '/evergreen/edu-private-money-lending-smb', label: 'Private Lending for SMBs' },
   ],
   company: [
     { href: '/about', label: 'About Us' },
-    { href: '/team', label: 'Our Team' },
-    { href: '/careers', label: 'Careers' },
-  ],
-  resources: [
-    { href: '/insights', label: 'Insights' },
-    { href: '/research', label: 'Research' },
-    { href: '/customer-stories', label: 'Customer Stories' },
+    { href: '/contact', label: 'Contact' },
   ],
 };
 ---
@@ -25,31 +32,44 @@ const footerLinks = {
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="/" class="logo">Capital Access</a>
-        <p class="tagline">Your trusted partner for financial clarity and wealth building.</p>
+        <p class="tagline">Capital for Those Who Move Fast</p>
+        <p class="tagline-sub">Alternative financing for real estate investors and entrepreneurs.</p>
       </div>
       
       <div class="footer-links">
-        <h4>Services</h4>
+        <h4>Financing</h4>
         <ul>
-          {footerLinks.services.map(link => (
+          {footerLinks.financing.map(link => (
             <li><a href={link.href}>{link.label}</a></li>
           ))}
         </ul>
       </div>
       
       <div class="footer-links">
-        <h4>Company</h4>
+        <h4>Investing</h4>
+        <ul>
+          {footerLinks.investing.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+        <h4 class="mt-6">Guides</h4>
+        <ul>
+          {footerLinks.guides.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Business</h4>
+        <ul>
+          {footerLinks.business.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+        <h4 class="mt-6">Company</h4>
         <ul>
           {footerLinks.company.map(link => (
-            <li><a href={link.href}>{link.label}</a></li>
-          ))}
-        </ul>
-      </div>
-      
-      <div class="footer-links">
-        <h4>Resources</h4>
-        <ul>
-          {footerLinks.resources.map(link => (
             <li><a href={link.href}>{link.label}</a></li>
           ))}
         </ul>
@@ -61,6 +81,7 @@ const footerLinks = {
       <div class="footer-legal">
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms of Service</a>
+        <a href="/disclosures">Disclosures</a>
       </div>
     </div>
   </div>
@@ -108,8 +129,16 @@ const footerLinks = {
   }
   
   .tagline {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--color-secondary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .tagline-sub {
+    color: rgba(255, 255, 255, 0.8);
     max-width: 300px;
+    font-size: var(--font-size-sm);
   }
   
   .footer-links h4 {
@@ -120,6 +149,10 @@ const footerLinks = {
     letter-spacing: 0.05em;
     color: var(--color-secondary);
     margin-bottom: var(--spacing-4);
+  }
+  
+  .footer-links h4.mt-6 {
+    margin-top: var(--spacing-6);
   }
   
   .footer-links ul {
@@ -161,6 +194,7 @@ const footerLinks = {
   .footer-legal {
     display: flex;
     gap: var(--spacing-6);
+    flex-wrap: wrap;
   }
   
   .footer-legal a {
