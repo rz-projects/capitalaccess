@@ -1,0 +1,587 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { url } from '../utils/url';
+
+const lastUpdated = new Date('2026-03-04');
+---
+
+<BaseLayout title="Disclosures" description="Important disclosures about Capital Access services, lender relationships, and educational content. Understand how we operate before using our services.">
+  <Header />
+  
+  <main id="main-content" tabindex="-1">
+    <article class="legal-page">
+      <div class="container">
+        <header class="legal-header">
+          <span class="legal-badge">Legal</span>
+          <h1>Disclosures</h1>
+          <p class="legal-description">Important information about how Capital Access operates, our relationship with lenders, and the nature of our educational content. Please read these disclosures carefully.</p>
+          <p class="legal-meta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Last updated: {lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
+        </header>
+        
+        <div class="legal-content">
+          <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+              <li><a href="#not-lender">Not a Direct Lender</a></li>
+              <li><a href="#educational-purpose">Educational Purpose</a></li>
+              <li><a href="#not-financial-advice">Not Financial Advice</a></li>
+              <li><a href="#lender-relationships">Lender Relationships</a></li>
+              <li><a href="#affiliate-compensation">Affiliate Compensation</a></li>
+              <li><a href="#testimonials">Testimonials and Endorsements</a></li>
+              <li><a href="#rates-terms">Rate and Term Disclaimer</a></li>
+              <li><a href="#credit-impact">Credit Impact</a></li>
+              <li><a href="#risk-disclosure">Risk Disclosure</a></li>
+              <li><a href="#third-party">Third-Party Content</a></li>
+              <li><a href="#contact">Contact Information</a></li>
+            </ul>
+          </nav>
+
+          <section id="not-lender" class="disclosure-highlight">
+            <h2>Not a Direct Lender</h2>
+            <div class="disclosure-box">
+              <p><strong>IMPORTANT DISCLOSURE: Capital Access is NOT a direct lender, mortgage broker, or financial institution.</strong></p>
+            </div>
+            <p>We are an educational resource and lender matching service. We do not:</p>
+            <ul>
+              <li>Make loans or extend credit of any kind</li>
+              <li>Make lending decisions or underwrite loans</li>
+              <li>Set interest rates, fees, points, or loan terms</li>
+              <li>Service loans or collect payments</li>
+              <li>Hold ourselves out as a lender or mortgage broker</li>
+              <li>Act as an agent for any specific lender</li>
+            </ul>
+            <p>When you use our lender matching service, we connect you with third-party lenders who may be able to provide financing. These lenders are independent entities that make their own lending decisions based on their criteria.</p>
+            <p><strong>We do not guarantee that you will be matched with a lender, approved for a loan, or receive any specific loan terms or rates.</strong></p>
+            <p>Any loan agreement is solely between you and the lender. We are not a party to any loan transaction and have no responsibility for the performance, enforcement, or terms of any loan.</p>
+          </section>
+
+          <section id="educational-purpose">
+            <h2>Educational Purpose</h2>
+            <p>All content on this website, including articles, guides, calculators, and other materials, is provided for <strong>educational and informational purposes only</strong>.</p>
+            <p>Our content is designed to help you understand alternative financing options, including hard money loans, private lending, bridge loans, and other creative financing strategies. However:</p>
+            <ul>
+              <li>Content is general in nature and may not apply to your specific situation</li>
+              <li>Information may not reflect the most current market conditions, regulations, or lending practices</li>
+              <li>Examples and case studies are illustrative and may not represent actual transactions</li>
+              <li>Content should not be relied upon as the sole basis for making financial decisions</li>
+            </ul>
+            <p>We strive to provide accurate and helpful information, but we make no warranties about the completeness, accuracy, reliability, or timeliness of our content.</p>
+          </section>
+
+          <section id="not-financial-advice">
+            <h2>Not Financial, Legal, or Tax Advice</h2>
+            <div class="disclosure-box">
+              <p><strong>Nothing on this website constitutes financial, investment, legal, tax, or other professional advice.</strong></p>
+            </div>
+            <p>The information provided through our services is not a substitute for professional advice from qualified professionals. We do not:</p>
+            <ul>
+              <li>Assess your individual financial situation, goals, or risk tolerance</li>
+              <li>Provide personalized investment or financing recommendations</li>
+              <li>Advise you on whether any particular loan or financing option is suitable for you</li>
+              <li>Provide legal advice regarding loan agreements, contracts, or regulatory compliance</li>
+              <li>Provide tax advice regarding the tax implications of any financing decision</li>
+            </ul>
+            <p><strong>Before making any financial decisions, you should consult with qualified professionals, including:</strong></p>
+            <ul>
+              <li>A licensed financial advisor or planner</li>
+              <li>A qualified attorney</li>
+              <li>A certified public accountant or tax professional</li>
+              <li>A licensed mortgage broker or lender</li>
+            </ul>
+            <p>You are solely responsible for your financial decisions and the consequences thereof.</p>
+          </section>
+
+          <section id="lender-relationships">
+            <h2>Lender Relationships</h2>
+            <p>We maintain relationships with a network of third-party lenders who may be able to provide financing to users of our service. These relationships include:</p>
+            
+            <h3>Nature of Relationships</h3>
+            <ul>
+              <li>Lenders in our network are independent third parties, not agents or employees of Capital Access</li>
+              <li>We do not represent any specific lender or group of lenders</li>
+              <li>Our lender network may change over time</li>
+              <li>Inclusion in our network does not constitute an endorsement of any lender</li>
+            </ul>
+
+            <h3>How Matching Works</h3>
+            <p>When you submit a consultation request, we may share your information with lenders in our network who we believe may be able to assist with your financing needs. The matching process considers factors such as:</p>
+            <ul>
+              <li>Loan amount requested</li>
+              <li>Property type and location</li>
+              <li>Your stated financing timeline</li>
+              <li>Lender specialties and preferences</li>
+            </ul>
+            <p><strong>We do not guarantee that any lender will contact you, approve your application, or offer favorable terms.</strong></p>
+
+            <h3>Lender Independence</h3>
+            <p>Each lender in our network:</p>
+            <ul>
+              <li>Has its own lending criteria, underwriting standards, and approval processes</li>
+              <li>Sets its own interest rates, fees, and loan terms</li>
+              <li>Is responsible for compliance with applicable laws and regulations</li>
+              <li>Has its own privacy policy and data handling practices</li>
+              <li>May or may not be licensed in your state</li>
+            </ul>
+            <p>We encourage you to research any lender before entering into a transaction with them.</p>
+          </section>
+
+          <section id="affiliate-compensation">
+            <h2>Affiliate Compensation</h2>
+            <p>Capital Access may receive compensation from lenders and other partners in the following ways:</p>
+            
+            <h3>Referral Fees</h3>
+            <p>When you are connected with a lender through our service and subsequently obtain financing from that lender, we may receive a referral fee or commission from the lender. This compensation:</p>
+            <ul>
+              <li>Does not increase the cost of your loan</li>
+              <li>Is paid by the lender, not by you</li>
+              <li>Is a common practice in the lending industry</li>
+            </ul>
+
+            <h3>Advertising</h3>
+            <p>We may display advertisements from lenders and other financial service providers on our website. We may receive compensation for displaying these advertisements.</p>
+
+            <h3>Affiliate Links</h3>
+            <p>Some links on our website may be affiliate links. If you click on an affiliate link and take certain actions (such as applying for a loan), we may receive compensation. This does not affect the cost to you.</p>
+
+            <h3>Impact on Our Content</h3>
+            <p>Compensation from lenders and partners does not influence our educational content. Our editorial team operates independently from our business development team. We are committed to providing accurate, unbiased information regardless of any compensation arrangements.</p>
+            <p>However, you should be aware that we have a financial interest in connecting you with lenders in our network.</p>
+          </section>
+
+          <section id="testimonials">
+            <h2>Testimonials and Endorsements</h2>
+            <p>Our website may feature testimonials from individuals who have used our services or obtained financing through our lender network. Please note:</p>
+            
+            <h3>Individual Results</h3>
+            <ul>
+              <li>Testimonials reflect the individual experiences of specific users</li>
+              <li>Results are not typical and may not be representative of all users</li>
+              <li>Your experience may differ based on your individual circumstances</li>
+              <li>We do not guarantee that you will achieve similar results</li>
+            </ul>
+
+            <h3>Testimonial Practices</h3>
+            <ul>
+              <li>Testimonials are provided voluntarily by users</li>
+              <li>We do not compensate users for testimonials unless clearly disclosed</li>
+              <li>Testimonials may be edited for clarity or length, but not for substance</li>
+              <li>We do not use stock photos or fabricated testimonials</li>
+            </ul>
+
+            <h3>Endorsements</h3>
+            <p>Any endorsements from industry professionals or organizations reflect the views of those individuals or organizations and not necessarily the views of Capital Access. We do not pay for endorsements unless clearly disclosed.</p>
+          </section>
+
+          <section id="rates-terms">
+            <h2>Rate and Term Disclaimer</h2>
+            <p>Any information about interest rates, loan terms, fees, or other financing conditions provided on our website is for <strong>illustrative purposes only</strong> and may not reflect actual offers available to you.</p>
+            
+            <h3>Factors Affecting Rates and Terms</h3>
+            <p>Actual rates and terms depend on many factors, including:</p>
+            <ul>
+              <li>Your credit history and score</li>
+              <li>The property type, condition, and location</li>
+              <li>The loan-to-value (LTV) ratio</li>
+              <li>Your experience as an investor or borrower</li>
+              <li>Current market conditions</li>
+              <li>The specific lender's criteria</li>
+              <li>Loan amount and term length</li>
+            </ul>
+
+            <h3>Rate Examples</h3>
+            <p>When we provide examples of rates or terms (e.g., "rates starting at X%"), these are typically the best available rates for ideal borrowers and may not be available to all applicants. Actual rates may be higher based on your circumstances.</p>
+
+            <h3>APR Disclosure</h3>
+            <p>Interest rates quoted may not include all fees and costs associated with a loan. The Annual Percentage Rate (APR) provides a more complete picture of the total cost of borrowing. Ask any lender for a complete disclosure of all fees, costs, and the APR before committing to a loan.</p>
+          </section>
+
+          <section id="credit-impact">
+            <h2>Credit Impact Disclosure</h2>
+            <p>Applying for financing may affect your credit score. Please be aware of the following:</p>
+            
+            <h3>Credit Inquiries</h3>
+            <ul>
+              <li>When you apply for a loan, the lender may perform a credit inquiry (hard pull)</li>
+              <li>Hard credit inquiries may temporarily lower your credit score</li>
+              <li>Multiple inquiries in a short period may have a greater impact</li>
+              <li>Some lenders may perform a soft credit check initially, which does not affect your score</li>
+            </ul>
+
+            <h3>Our Process</h3>
+            <p>When you submit a consultation request through our service:</p>
+            <ul>
+              <li>We do not perform credit checks</li>
+              <li>We do not pull your credit report</li>
+              <li>Your credit score is not affected by submitting a consultation request</li>
+              <li>Credit checks are performed by lenders, not by us</li>
+            </ul>
+
+            <h3>Recommendations</h3>
+            <ul>
+              <li>Ask lenders whether they perform a hard or soft credit check before applying</li>
+              <li>Limit the number of loan applications you submit</li>
+              <li>Monitor your credit report regularly</li>
+              <li>Understand how credit inquiries affect your score</li>
+            </ul>
+          </section>
+
+          <section id="risk-disclosure">
+            <h2>Risk Disclosure</h2>
+            <p>All financing involves risk. Before pursuing any financing option, you should understand and consider the following risks:</p>
+            
+            <h3>Hard Money and Private Lending Risks</h3>
+            <ul>
+              <li><strong>Higher Interest Rates:</strong> Hard money loans typically have higher interest rates than conventional loans</li>
+              <li><strong>Shorter Terms:</strong> Most hard money loans have short terms (6-24 months) and require a clear exit strategy</li>
+              <li><strong>Higher Fees:</strong> Hard money loans often include origination fees, points, and other costs</li>
+              <li><strong>Asset-Based:</strong> These loans are typically secured by the property; default can result in loss of the property</li>
+              <li><strong>Balloon Payments:</strong> Many hard money loans require a balloon payment at maturity</li>
+            </ul>
+
+            <h3>General Financing Risks</h3>
+            <ul>
+              <li><strong>Market Risk:</strong> Real estate values can decline, affecting your equity and exit strategy</li>
+              <li><strong>Interest Rate Risk:</strong> Interest rates may change, affecting refinancing options</li>
+              <li><strong>Liquidity Risk:</strong> Real estate is not liquid; you may not be able to sell quickly</li>
+              <li><strong>Regulatory Risk:</strong> Laws and regulations affecting lending can change</li>
+              <li><strong>Business Risk:</strong> Investment properties and businesses may not perform as expected</li>
+            </ul>
+
+            <h3>Your Responsibility</h3>
+            <p>You are solely responsible for:</p>
+            <ul>
+              <li>Understanding the risks associated with any financing option</li>
+              <li>Conducting your own due diligence on lenders and loan terms</li>
+              <li>Ensuring you have a viable exit strategy</li>
+              <li>Assessing whether any financing option is appropriate for your situation</li>
+            </ul>
+          </section>
+
+          <section id="third-party">
+            <h2>Third-Party Content and Links</h2>
+            <p>Our website may contain links to third-party websites, including lender websites, government resources, and educational materials. We are not responsible for:</p>
+            <ul>
+              <li>The accuracy, completeness, or timeliness of third-party content</li>
+              <li>The products, services, or practices of third parties</li>
+              <li>The privacy policies or data handling practices of third parties</li>
+              <li>Any transactions you enter into with third parties</li>
+            </ul>
+            <p>When you click on a third-party link, you leave our website and are subject to the terms, conditions, and privacy policies of that third party.</p>
+            <p><strong>We do not endorse or guarantee the reliability of any third-party website or service.</strong></p>
+          </section>
+
+          <section id="contact">
+            <h2>Contact Information</h2>
+            <p>If you have questions about these disclosures, please contact us:</p>
+            <div class="contact-box">
+              <p><strong>Capital Access</strong></p>
+              <p>123 Finance Street, Suite 100<br>New York, NY 10001</p>
+              <p>Email: <a href="mailto:disclosures@capitalaccess.com">disclosures@capitalaccess.com</a></p>
+              <p>Phone: (555) 123-4567</p>
+            </div>
+          </section>
+
+          <section class="summary-notice">
+            <h2>Summary of Key Disclosures</h2>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <h3>Not a Lender</h3>
+                <p>We connect you with lenders but do not make loans ourselves.</p>
+              </div>
+              <div class="summary-item">
+                <h3>Educational Only</h3>
+                <p>Our content is for education, not personalized financial advice.</p>
+              </div>
+              <div class="summary-item">
+                <h3>Compensation</h3>
+                <p>We may receive compensation from lenders in our network.</p>
+              </div>
+              <div class="summary-item">
+                <h3>No Guarantees</h3>
+                <p>We do not guarantee loan approval, terms, or rates.</p>
+              </div>
+              <div class="summary-item">
+                <h3>Your Responsibility</h3>
+                <p>You are solely responsible for your financial decisions.</p>
+              </div>
+              <div class="summary-item">
+                <h3>Due Diligence</h3>
+                <p>Research lenders and terms before committing to any loan.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: 3rem 0 5rem;
+    background: #FFFFFF;
+  }
+
+  .legal-header {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  .legal-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .legal-header h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .legal-header h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .legal-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .legal-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    margin: 0;
+  }
+
+  .legal-meta svg {
+    color: var(--text-muted);
+  }
+
+  .legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .toc {
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .toc h2 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .toc ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .toc a {
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+    text-decoration: none;
+    display: block;
+    padding: 0.25rem 0;
+  }
+
+  .toc a:hover {
+    color: var(--color-secondary);
+  }
+
+  .legal-content section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .legal-content h2:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .legal-content h3 {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content p {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .legal-content ul,
+  .legal-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .legal-content li {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-content a {
+    color: var(--color-secondary);
+    text-decoration: underline;
+  }
+
+  .legal-content a:hover {
+    color: var(--color-secondary-dark);
+  }
+
+  .legal-content strong {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .disclosure-box {
+    background: rgba(45, 90, 61, 0.1);
+    border-left: 4px solid var(--color-secondary);
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .disclosure-box p {
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .disclosure-highlight {
+    background: var(--bg-tertiary);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+  }
+
+  .disclosure-highlight h2 {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .contact-box {
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .contact-box p {
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .summary-notice {
+    background: var(--color-primary);
+    color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+
+  .summary-notice h2 {
+    color: white;
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .summary-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .summary-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .summary-item {
+    text-align: center;
+  }
+
+  .summary-item h3 {
+    color: var(--color-secondary);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+  }
+
+  .summary-item p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+</style>
