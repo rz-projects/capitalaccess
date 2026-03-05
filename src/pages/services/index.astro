@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { url } from '../../utils/url';
 
 const services = await getCollection('services');
 
@@ -29,7 +30,7 @@ const sortedServices = services.sort((a, b) => {
       <div class="container">
         <div class="guides-grid">
           {sortedServices.map(guide => (
-            <a href={`/services/${guide.id.replace('.md', '')}`} class="guide-card">
+            <a href={url(`/services/${guide.id.replace('.md', '')}`)} class="guide-card">
               <div class="guide-icon">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>

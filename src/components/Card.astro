@@ -1,4 +1,6 @@
 ---
+import { url } from '../utils/url';
+
 interface Props {
   title: string;
   description?: string;
@@ -11,6 +13,7 @@ interface Props {
 }
 
 const { title, description, href, image, tag, icon, features, variant = 'default' } = Astro.props;
+const resolvedHref = href ? url(href) : undefined;
 ---
 
 <article class:list={['card', `card-${variant}`]}>
@@ -41,13 +44,13 @@ const { title, description, href, image, tag, icon, features, variant = 'default
     )}
     {tag && <span class="card-tag">{tag}</span>}
     <h3 class="card-title">
-      {href ? <a href={href}>{title}</a> : title}
+      {resolvedHref ? <a href={resolvedHref}>{title}</a> : title}
     </h3>
     {description && <p class="card-description">{description}</p>}
     {features && <p class="card-features">{features}</p>}
     <slot />
-    {href && (
-      <a href={href} class="card-cta">
+    {resolvedHref && (
+      <a href={resolvedHref} class="card-cta">
         Learn How It Works
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>

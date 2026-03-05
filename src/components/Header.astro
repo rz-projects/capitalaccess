@@ -1,4 +1,6 @@
 ---
+import { url } from '../utils/url';
+
 const navItems = [
   { href: '/', label: 'Home' },
   {
@@ -41,9 +43,9 @@ const navItems = [
 ---
 
 <header class="header">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href={url('#main-content')} class="skip-link">Skip to main content</a>
   <nav class="nav container">
-    <a href="/" class="logo">
+    <a href={url('/')} class="logo">
       <span class="logo-text">Capital Access</span>
     </a>
     
@@ -65,13 +67,13 @@ const navItems = [
               <ul class="dropdown-menu">
                 {item.children.map(child => (
                   <li>
-                    <a href={child.href}>{child.label}</a>
+                    <a href={url(child.href)}>{child.label}</a>
                   </li>
                 ))}
               </ul>
             </>
           ) : (
-            <a href={item.href} class="nav-link">{item.label}</a>
+            <a href={url(item.href)} class="nav-link">{item.label}</a>
           )}
         </li>
       ))}

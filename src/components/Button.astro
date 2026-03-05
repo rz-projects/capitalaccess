@@ -1,4 +1,6 @@
 ---
+import { url } from '../utils/url';
+
 interface Props {
   variant?: 'primary' | 'secondary' | 'outline' | 'outline-gold' | 'ghost' | 'white';
   size?: 'sm' | 'md' | 'lg';
@@ -18,10 +20,11 @@ const {
 } = Astro.props;
 
 const Tag = href ? 'a' : 'button';
+const resolvedHref = href ? url(href) : undefined;
 ---
 
 <Tag
-  href={href}
+  href={resolvedHref}
   type={!href ? type : undefined}
   disabled={disabled}
   class:list={['btn', `btn-${variant}`, `btn-${size}`, className]}

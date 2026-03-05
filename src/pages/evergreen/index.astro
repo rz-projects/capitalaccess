@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { url } from '../../utils/url';
 
 const evergreen = await getCollection('evergreen');
 
@@ -41,7 +42,7 @@ const articlesByCategory = categories.map(cat => ({
             <h2 class="category-title">{label}</h2>
             <div class="articles-grid">
               {articles.map(article => (
-                <a href={`/evergreen/${article.id.replace('.md', '')}`} class="article-card">
+                <a href={url(`/evergreen/${article.id.replace('.md', '')}`)} class="article-card">
                   <div class="article-card-header">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
