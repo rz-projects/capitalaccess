@@ -1,12 +1,27 @@
 ---
 import { url } from '../utils/url';
+import SEO from '../components/SEO.astro';
+import OrganizationSchema from '../components/OrganizationSchema.astro';
 
 interface Props {
   title: string;
   description?: string;
+  type?: 'website' | 'article';
+  image?: string;
+  noindex?: boolean;
+  canonicalUrl?: string;
 }
 
-const { title, description = 'Capital Access - Your trusted partner for financial clarity and wealth building.' } = Astro.props;
+const {
+  title,
+  description = 'Capital Access - Your trusted partner for alternative financing education. Expert-vetted content on hard money loans, private lending, and creative financing for real estate investors and entrepreneurs.',
+  type = 'website',
+  image,
+  noindex = false,
+  canonicalUrl
+} = Astro.props;
+
+const fullTitle = title.includes('Capital Access') ? title : `${title} | Capital Access`;
 ---
 
 <!DOCTYPE html>
@@ -16,7 +31,22 @@ const { title, description = 'Capital Access - Your trusted partner for financia
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
-    <title>{title} | Capital Access</title>
+    <title>{fullTitle}</title>
+    
+    <SEO
+      title={title}
+      description={description}
+      type={type}
+      image={image}
+      noindex={noindex}
+      canonicalUrl={canonicalUrl}
+    />
+    
+    {!noindex && <OrganizationSchema />}
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <slot />

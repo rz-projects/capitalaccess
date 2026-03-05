@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { url } from '../utils/url';
 
 interface Props {
@@ -11,18 +12,47 @@ interface Props {
   category?: string;
   lastUpdated?: Date;
   related?: string[];
+  breadcrumbItems?: { name: string; url: string }[];
 }
 
-const { title, description, category, lastUpdated, related } = Astro.props;
+const { title, description, category, lastUpdated, related, breadcrumbItems } = Astro.props;
+
+const defaultBreadcrumbs = category
+  ? [{ name: category.charAt(0).toUpperCase() + category.slice(1), url: '/evergreen/' }]
+  : [];
+const breadcrumbs = breadcrumbItems || defaultBreadcrumbs;
 ---
 
-<BaseLayout title={`${title} | Capital Access`} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  modifiedTime={lastUpdated}
+  section={category}
+>
   <Header />
+  {breadcrumbs.length > 0 && <BreadcrumbSchema items={breadcrumbs} />}
   
   <main id="main-content" tabindex="-1">
     <article class="article">
       <div class="container">
         <div class="article-header">
+          {breadcrumbs.length > 0 && (
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <ol>
+                <li><a href={url('/')}>Home</a></li>
+                {breadcrumbs.map((item, i) => (
+                  <li>
+                    {i === breadcrumbs.length - 1 ? (
+                      <span aria-current="page">{item.name}</span>
+                    ) : (
+                      <a href={url(item.url)}>{item.name}</a>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
           {category && (
             <span class="article-category">{category}</span>
           )}
@@ -81,6 +111,46 @@ const { title, description, category, lastUpdated, related } = Astro.props;
   .article {
     padding: 3rem 0 5rem;
     background: #FFFFFF;
+  }
+  
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+  
+  .breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+  }
+  
+  .breadcrumb li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .breadcrumb li:not(:last-child)::after {
+    content: '/';
+    color: var(--text-muted);
+  }
+  
+  .breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    color: var(--color-secondary);
+  }
+  
+  .breadcrumb span {
+    color: var(--text-primary);
+    font-weight: 500;
   }
   
   .article-header {

@@ -1,0 +1,14 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1B365D"/>
+      <stop offset="100%" style="stop-color:#122640"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="620" width="1200" height="10" fill="#B8860B"/>
+  <text x="600" y="280" font-family="Georgia, serif" font-size="72" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Capital Access</text>
+  <text x="600" y="360" font-family="Arial, sans-serif" font-size="28" fill="#B8860B" text-anchor="middle">Alternative Financing Education</text>
+  <text x="600" y="420" font-family="Arial, sans-serif" font-size="24" fill="#FFFFFF" opacity="0.8" text-anchor="middle">Hard Money Loans • Private Lending • Creative Financing</text>
+  <text x="600" y="520" font-family="Arial, sans-serif" font-size="20" fill="#FFFFFF" opacity="0.6" text-anchor="middle">Expert-Vetted Content for Real Estate Investors &amp; Entrepreneurs</text>
+</svg>

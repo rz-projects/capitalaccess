@@ -1,0 +1,14 @@
+# robots.txt for Capital Access
+# https://rz-projects.github.io/capitalaccess/
+
+User-agent: *
+Allow: /
+
+# Disallow internal pages
+Disallow: /design-system/
+
+# Sitemap location
+Sitemap: https://rz-projects.github.io/capitalaccess/sitemap-index.xml
+
+# Crawl delay (optional, for politeness)
+Crawl-delay: 1

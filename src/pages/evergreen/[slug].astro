@@ -12,7 +12,12 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, description, category, lastUpdated, related } = entry.data;
+const { title, description, category, lastUpdated, related, image, keywords } = entry.data;
+
+const breadcrumbItems = [
+  { name: 'Educational Resources', url: '/evergreen/' },
+  { name: category.charAt(0).toUpperCase() + category.slice(1), url: `/evergreen/?category=${category}` },
+];
 ---
 
 <ArticleLayout 
@@ -21,6 +26,7 @@ const { title, description, category, lastUpdated, related } = entry.data;
   category={category} 
   lastUpdated={lastUpdated}
   related={related}
+  breadcrumbItems={breadcrumbItems}
 >
   <Content />
 </ArticleLayout>

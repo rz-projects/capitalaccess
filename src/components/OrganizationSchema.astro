@@ -1,0 +1,51 @@
+---
+const siteUrl = 'https://rz-projects.github.io/capitalaccess';
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Capital Access",
+  "alternateName": "CapitalAccess.org",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/logo.svg`,
+    "width": 200,
+    "height": 60
+  },
+  "description": "Capital Access is an educational resource and lender matching service for alternative financing, including hard money loans, private lending, and creative financing strategies for real estate investors and entrepreneurs.",
+  "foundingDate": "2018",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "Michael Torres",
+      "jobTitle": "Founder & Principal"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Finance Street, Suite 100",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "postalCode": "10001",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-555-123-4567",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://twitter.com/capitalaccess",
+    "https://www.linkedin.com/company/capitalaccess",
+    "https://www.facebook.com/capitalaccess"
+  ],
+  "areaServed": "United States",
+  "serviceType": [
+    "Financial Education",
+    "Lender Matching Service",
+    "Alternative Financing Consultation"
+  ]
+})} />

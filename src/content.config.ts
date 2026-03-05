@@ -9,7 +9,9 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     author: z.string(),
     image: z.string().optional(),
+    imageAlt: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    keywords: z.array(z.string()).optional(),
   }),
 });
 
@@ -21,7 +23,9 @@ const research = defineCollection({
     pubDate: z.coerce.date(),
     author: z.string(),
     image: z.string().optional(),
+    imageAlt: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    keywords: z.array(z.string()).optional(),
     downloadUrl: z.string().optional(),
   }),
 });
@@ -34,6 +38,7 @@ const customerStories = defineCollection({
     industry: z.string(),
     pubDate: z.coerce.date(),
     image: z.string().optional(),
+    imageAlt: z.string().optional(),
     services: z.array(z.string()).optional(),
     results: z.string().optional(),
   }),
@@ -45,10 +50,12 @@ const services = defineCollection({
     title: z.string(),
     description: z.string(),
     heroImage: z.string().optional(),
+    imageAlt: z.string().optional(),
     cta: z.string().optional(),
     related: z.array(z.string()).optional(),
     order: z.number().optional(),
     lastUpdated: z.coerce.date().optional(),
+    keywords: z.array(z.string()).optional(),
   }),
 });
 
@@ -60,6 +67,10 @@ const evergreen = defineCollection({
     category: z.string(),
     lastUpdated: z.coerce.date(),
     related: z.array(z.string()).optional(),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
+    keywords: z.array(z.string()).optional(),
+    author: z.string().optional(),
   }),
 });
 
