@@ -136,7 +136,13 @@ const resolvedHref = href ? url(href) : undefined;
   }
   
   .card-content {
-    padding: 2rem;
+    padding: 1.25rem;
+  }
+  
+  @media (min-width: 768px) {
+    .card-content {
+      padding: 2rem;
+    }
   }
   
   .card-icon {
@@ -161,7 +167,7 @@ const resolvedHref = href ? url(href) : undefined;
     padding: 0.25rem 0.75rem;
     background: var(--color-primary);
     color: white;
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
