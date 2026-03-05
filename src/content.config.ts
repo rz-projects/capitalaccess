@@ -48,6 +48,7 @@ const services = defineCollection({
     cta: z.string().optional(),
     related: z.array(z.string()).optional(),
     order: z.number().optional(),
+    lastUpdated: z.coerce.date().optional(),
   }),
 });
 

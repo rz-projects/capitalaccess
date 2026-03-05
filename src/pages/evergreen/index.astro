@@ -1,0 +1,233 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const evergreen = await getCollection('evergreen');
+
+const categories = [...new Set(evergreen.map(item => item.data.category))];
+
+const categoryLabels: Record<string, string> = {
+  'financing': 'Financing',
+  'real-estate': 'Real Estate',
+  'business': 'Business',
+  'investing': 'Investing',
+};
+
+const articlesByCategory = categories.map(cat => ({
+  category: cat,
+  label: categoryLabels[cat] || cat,
+  articles: evergreen.filter(item => item.data.category === cat)
+}));
+---
+
+<BaseLayout title="Educational Resources | Capital Access" description="Expert-vetted educational articles on hard money loans, private lending, real estate investing, and alternative financing.">
+  <Header />
+  
+  <main id="main-content" tabindex="-1">
+    <section class="page-header">
+      <div class="container">
+        <span class="page-badge">Educational Resources</span>
+        <h1>Expert Knowledge for Your Next Move</h1>
+        <p>Comprehensive guides and articles on alternative financing, real estate investing, and capital strategies. Expert-vetted content to help you make informed decisions.</p>
+      </div>
+    </section>
+    
+    <section class="articles-section">
+      <div class="container">
+        {articlesByCategory.map(({ category, label, articles }) => (
+          <div class="category-section">
+            <h2 class="category-title">{label}</h2>
+            <div class="articles-grid">
+              {articles.map(article => (
+                <a href={`/evergreen/${article.id.replace('.md', '')}`} class="article-card">
+                  <div class="article-card-header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                      <line x1="16" y1="13" x2="8" y2="13"/>
+                      <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    <span class="article-category-badge">{category}</span>
+                  </div>
+                  <h3 class="article-title">{article.data.title}</h3>
+                  <p class="article-description">{article.data.description}</p>
+                  <span class="article-link">
+                    Read Article
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                      <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: 4rem 0 3rem;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, white 50%, var(--bg-tertiary) 100%);
+    text-align: center;
+  }
+  
+  .page-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .page-header h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  .page-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  
+  .articles-section {
+    padding: 3rem 0 5rem;
+    background: #FFFFFF;
+  }
+  
+  .category-section {
+    margin-bottom: 4rem;
+  }
+  
+  .category-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .category-title {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-secondary);
+    display: inline-block;
+  }
+  
+  .articles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .articles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .articles-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .article-card {
+    background: white;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .article-card:hover {
+    border-color: var(--color-secondary);
+    box-shadow: 0 4px 12px rgba(27, 54, 93, 0.1);
+  }
+  
+  .article-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .article-card-header svg {
+    color: var(--color-primary);
+  }
+  
+  .article-category-badge {
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-tertiary);
+    color: var(--text-tertiary);
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+  }
+  
+  .article-title {
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+  
+  .article-card:hover .article-title {
+    color: var(--color-secondary);
+  }
+  
+  .article-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+  
+  .article-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-top: auto;
+  }
+  
+  .article-card:hover .article-link {
+    gap: 0.75rem;
+  }
+  
+  .article-link svg {
+    transition: transform 0.2s ease;
+  }
+  
+  .article-card:hover .article-link svg {
+    transform: translateX(4px);
+  }
+</style>
