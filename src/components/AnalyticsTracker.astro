@@ -1,0 +1,271 @@
+---
+/**
+ * Analytics Event Tracker
+ * 
+ * This component sets up automatic event tracking for:
+ * - Contact form submissions
+ * - CTA button clicks
+ * - Navigation clicks
+ * - External link clicks
+ * - Scroll depth
+ * - Article reads
+ * 
+ * Usage: Include this component in BaseLayout
+ */
+
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const enableAnalytics = import.meta.env.PUBLIC_ENABLE_ANALYTICS === 'true';
+
+if (!measurementId || !enableAnalytics) {
+  return;
+}
+---
+
+<script>
+  // Track custom events
+  const trackEvent = (eventName: string, eventParams: Record<string, any> = {}) => {
+    if (typeof window.trackEvent === 'function') {
+      window.trackEvent(eventName, eventParams);
+    }
+  };
+
+  // Track page view (for SPA navigation)
+  const trackPageView = (pagePath: string, pageTitle?: string) => {
+    trackEvent('page_view', {
+      page_path: pagePath,
+      page_title: pageTitle || document.title
+    });
+  };
+
+  // Track contact form submission
+  const trackFormSubmission = (formType: string, formData?: Record<string, any>) => {
+    trackEvent('form_submission', {
+      form_type: formType,
+      form_name: formType,
+      ...formData
+    });
+  };
+
+  // Track CTA button click
+  const trackCTAClick = (ctaName: string, ctaLocation: string, destination?: string) => {
+    trackEvent('cta_click', {
+      cta_name: ctaName,
+      cta_location: ctaLocation,
+      link_url: destination || '',
+      link_domain: destination ? new URL(destination).hostname : ''
+    });
+  };
+
+  // Track navigation click
+  const trackNavClick = (navItem: string, navLevel: number, destination: string) => {
+    trackEvent('navigation_click', {
+      nav_item: navItem,
+      nav_level: navLevel,
+      link_url: destination
+    });
+  };
+
+  // Track external link click
+  const trackExternalLink = (linkUrl: string, linkText: string, linkDomain: string) => {
+    trackEvent('external_link_click', {
+      link_url: linkUrl,
+      link_text: linkText,
+      link_domain: linkDomain,
+      outbound: true
+    });
+  };
+
+  // Track scroll depth
+  const trackScrollDepth = (scrollPercentage: number) => {
+    trackEvent('scroll_depth', {
+      scroll_percentage: scrollPercentage,
+      scroll_threshold: scrollPercentage
+    });
+  };
+
+  // Track article read
+  const trackArticleRead = (articleTitle: string, articleCategory: string, readPercentage: number) => {
+    trackEvent('article_read', {
+      article_title: articleTitle,
+      article_category: articleCategory,
+      read_percentage: readPercentage
+    });
+  };
+
+  // Track consultation request
+  const trackConsultationRequest = (dealType?: string) => {
+    trackEvent('consultation_request', {
+      deal_type: dealType || 'general',
+      conversion_type: 'consultation'
+    });
+  };
+
+  // Track guide download
+  const trackGuideDownload = (guideName: string, guideType: string) => {
+    trackEvent('guide_download', {
+      guide_name: guideName,
+      guide_type: guideType,
+      conversion_type: 'download'
+    });
+  };
+
+  // Initialize automatic tracking
+  document.addEventListener('DOMContentLoaded', () => {
+    // Track contact form submissions
+    const contactForm = document.querySelector('.contact-form') as HTMLFormElement;
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        const formData = new FormData(contactForm);
+        const dealType = formData.get('deal-type') as string || 'general';
+        
+        trackFormSubmission('contact_form', {
+          deal_type: dealType,
+          has_phone: !!formData.get('phone'),
+          has_message: !!formData.get('message')
+        });
+        
+        trackConsultationRequest(dealType);
+      });
+    }
+
+    // Track CTA button clicks
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const ctaText = target.textContent?.trim() || '';
+        const ctaLocation = target.closest('section')?.className.split(' ')[0] || 'unknown';
+        const destination = target.getAttribute('href') || '';
+        
+        trackCTAClick(ctaText, ctaLocation, destination);
+      });
+    });
+
+    // Track navigation clicks
+    document.querySelectorAll('.nav-link, .dropdown-menu a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const navItem = target.textContent?.trim() || '';
+        const isDropdown = target.closest('.dropdown-menu');
+        const navLevel = isDropdown ? 2 : 1;
+        const destination = target.getAttribute('href') || '';
+        
+        trackNavClick(navItem, navLevel, destination);
+      });
+    });
+
+    // Track footer navigation
+    document.querySelectorAll('.footer-links a, .footer-brand a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const linkText = target.textContent?.trim() || '';
+        const destination = target.getAttribute('href') || '';
+        
+        trackNavClick(linkText, 0, destination);
+      });
+    });
+
+    // Track external link clicks
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const isExternal = !href.includes(window.location.hostname);
+      
+      if (isExternal) {
+        link.addEventListener('click', (e) => {
+          const target = e.currentTarget as HTMLElement;
+          const linkText = target.textContent?.trim() || '';
+          const linkDomain = new URL(href).hostname;
+          
+          trackExternalLink(href, linkText, linkDomain);
+        });
+      }
+    });
+
+    // Track scroll depth
+    let scrollTracked: number[] = [];
+    const scrollThresholds = [25, 50, 75, 90, 100];
+    
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+      
+      scrollThresholds.forEach(threshold => {
+        if (scrollPercent >= threshold && !scrollTracked.includes(threshold)) {
+          scrollTracked.push(threshold);
+          trackScrollDepth(threshold);
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Track article reads (for article pages)
+    const articleContent = document.querySelector('article');
+    if (articleContent) {
+      const articleTitle = document.title;
+      const articleCategory = document.querySelector('meta[name="category"]')?.getAttribute('content') || 'general';
+      
+      let articleScrollTracked: number[] = [];
+      const articleThresholds = [25, 50, 75, 100];
+      
+      const handleArticleScroll = () => {
+        const scrollTop = window.scrollY;
+        const articleTop = articleContent.offsetTop;
+        const articleHeight = articleContent.offsetHeight;
+        const viewportHeight = window.innerHeight;
+        
+        const scrollInArticle = Math.max(0, scrollTop - articleTop);
+        const maxScroll = articleHeight - viewportHeight;
+        const articlePercent = Math.min(100, Math.round((scrollInArticle / maxScroll) * 100));
+        
+        articleThresholds.forEach(threshold => {
+          if (articlePercent >= threshold && !articleScrollTracked.includes(threshold)) {
+            articleScrollTracked.push(threshold);
+            trackArticleRead(articleTitle, articleCategory, threshold);
+          }
+        });
+      };
+      
+      window.addEventListener('scroll', handleArticleScroll, { passive: true });
+    }
+
+    // Track phone number clicks
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      link.addEventListener('click', () => {
+        const phoneNumber = link.getAttribute('href')?.replace('tel:', '') || '';
+        trackEvent('phone_click', {
+          phone_number: phoneNumber,
+          conversion_type: 'phone_call'
+        });
+      });
+    });
+
+    // Track email clicks
+    document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+      link.addEventListener('click', () => {
+        const email = link.getAttribute('href')?.replace('mailto:', '') || '';
+        trackEvent('email_click', {
+          email_address: email
+        });
+      });
+    });
+  });
+
+  // Expose tracking functions globally
+  window.analytics = {
+    trackEvent,
+    trackPageView,
+    trackFormSubmission,
+    trackCTAClick,
+    trackNavClick,
+    trackExternalLink,
+    trackScrollDepth,
+    trackArticleRead,
+    trackConsultationRequest,
+    trackGuideDownload
+  };
+</script>
+
+<style>
+  /* No styles needed - this is a tracking component */
+</style>

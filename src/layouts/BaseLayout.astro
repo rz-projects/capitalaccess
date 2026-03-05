@@ -2,6 +2,9 @@
 import { url } from '../utils/url';
 import SEO from '../components/SEO.astro';
 import OrganizationSchema from '../components/OrganizationSchema.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import AnalyticsTracker from '../components/AnalyticsTracker.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title: string;
@@ -44,12 +47,16 @@ const fullTitle = title.includes('Capital Access') ? title : `${title} | Capital
     
     {!noindex && <OrganizationSchema />}
     
+    <GoogleAnalytics />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <slot />
+    <AnalyticsTracker />
+    <CookieConsent />
   </body>
 </html>
 
